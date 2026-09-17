@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Interactive Academic Study Planner</title>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<style>
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    margin: 0;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header{
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.title-area {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a252f;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.export-btn {
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.excel-btn { background-color: #107c41; }
+.excel-btn:hover { background-color: #0a4d29; }
+.pdf-btn { background-color: #718096; }
+.pdf-btn:hover { background-color: #4a5568; }
+.toggle-btn { background-color: #3182ce; }
+.toggle-btn:hover { background-color: #2b6cb0; }
+.options-btn { background-color: #805ad5; }
+.options-btn:hover { background-color: #6b46c1; }
+.json-header-btn { background-color: #d69e2e; }
+.json-header-btn:hover { background-color: #b7791f; }
+
+.filter-panel {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #f8fafc;
+    padding: 12px 18px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.filter-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input {
+    cursor: pointer;
+    accent-color: #3182ce;
+    width: 16px;
+    height: 16px;
+}
+
+.select-dropdown {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    background: white;
+}
+
+.template-btn {
+    background-color: #edf2f7;
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.template-btn:hover { background-color: #e2e8f0; border-color: #a0aec0; }
+.template-btn.active-template { background-color: #dd6b20; color: #ffffff; border-color: #c05621; }
+
+.container{
+    display: flex;
+    height: calc(100vh - 200px);
+}
+
+.sidebar{
+    width: 340px;
+    background: #ffffff;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 2px solid #e2e8f0;
+}
+
+.sidebar h2{
+    margin-top: 0;
+    font-size: 18px;
+    color: #2c3e50;
+    border-bottom: 2px solid #34495e;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.board{
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.planner-row {
+    display: flex;
+    background: #ffffff;
+    border: 1px solid #bcbcbc;
+    border-radius: 4px;
+    overflow: hidden;
+    min-height: 90px;
+}
+
+.planner-row.collapsed-term {
+    display: none !important;
+}
+
+.year-label {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-right: 1px solid #bcbcbc;
+    color: #222;
+    text-align: center;
+}
+
+.sem-label {
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    background: #ffffff;
+    border-right: 1px solid #bcbcbc;
+    color: #444;
+    text-align: center;
+    padding: 5px;
+}
+
+.y2026 { background-color: #e2efda; }
+.y2027 { background-color: #fff2cc; }
+.y2028 { background-color: #fce4d6; }
+.y2029 { background-color: #e8daef; } 
+.y2030 { background-color: #e0f7fa; } 
+.y-credited { background-color: #e2e8f0; }
+
+.dropzone{
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fafafa;
+    align-content: center;
+}
+
+.dropzone:hover { background: #f1f5f9; }
+
+.card{
+    background: #ffffff;
+    border: 1px solid #cdcdcd;
+    border-radius: 4px;
+    padding: 10px;
+    width: 260px;
+    font-size: 13px;
+    line-height: 1.4;
+    cursor: grab;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all .2s ease;
+    position: relative;
+}
+
+.card.major-unit-card {
+    background: #ebf8ff;
+    border-color: #3182ce;
+}
+
+.card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-color: #a0aec0;
+}
+
+.card strong{
+    display: block;
+    color: #1a252f;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.dragging{ opacity: .4; }
+
+.passed-row { min-height: 60px; }
+.passed-row .card {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 0;
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.passed-row .card strong { font-size: 13px; margin-bottom: 0; display: inline; }
+.passed-row .card.invalid-semester::after,
+.passed-row .card.invalid-requisite::after { display: none !important; }
+
+.card.invalid-semester { border: 2px solid #e53e3e !important; background-color: #fff5f5 !important; }
+.card.invalid-semester::after {
+    content: "⚠️ Invalid Semester";
+    display: block; font-size: 10px; color: #c53030; font-weight: bold; margin-top: 4px;
+}
+
+.card.invalid-requisite { border: 2px solid #805ad5 !important; background-color: #faf5ff !important; }
+.card.invalid-requisite::after {
+    content: "⚠️ Requisite Conflict";
+    display: block; font-size: 10px; color: #6b46c1; font-weight: bold; margin-top: 4px;
+}
+
+/* --- OPTIONS / MODAL STYLING --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #ffffff;
+    width: 950px;
+    max-width: 95vw;
+    height: 85vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: #1a252f;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2d3748;
+    border-bottom: 1px solid #4a5568;
+    padding-right: 15px;
+}
+
+.tab-group {
+    display: flex;
+}
+
+.modal-tab-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: #a0aec0;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.modal-tab-btn.active {
+    color: #ffffff;
+    background: #1a252f;
+    border-bottom-color: #3182ce;
+}
+
+.refresh-view-btn {
+    background: #4a5568;
+    color: #ffffff;
+    border: 1px solid #718096;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.refresh-view-btn:hover {
+    background: #718096;
+}
+
+.modal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tab-content {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+.tab-content.active {
+    display: flex;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal-footer-left, .modal-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.clear-panel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.config-section {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.config-section h3 {
+    margin-top: 0;
+    font-size: 15px;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+}
+
+.input-group input[type="text"] {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.table-editor {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.table-editor th, .table-editor td {
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.table-editor th {
+    background: #edf2f7;
+    color: #2d3748;
+}
+
+.table-editor input[type="text"] {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #cbd5e1;
+    border-radius: 3px;
+}
+
+.pathway-card-editor {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.pathway-unit-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.add-btn { background: #38a169; color: white; }
+.delete-btn { background: #e53e3e; color: white; padding: 4px 8px; }
+.delete-btn:disabled { background: #feb2b2; cursor: not-allowed; opacity: 0.6; }
+.json-btn { background: #d69e2e; color: white; }
+
+/* Print mode styles retained */
+body.clean-table-mode { background: #ffffff; }
+body.clean-table-mode .sidebar, body.clean-table-mode .filter-panel { display: none !important; }
+body.clean-table-mode header { box-shadow: none; border-bottom: 2px solid #1a252f; padding: 15px 5px; }
+body.clean-table-mode .container { height: auto; }
+body.clean-table-mode .board { padding: 20px 5px; gap: 0; }
+body.clean-table-mode .planner-row { border-radius: 0; border: none; border-bottom: 1px solid #cbd5e1; min-height: auto; align-items: stretch; }
+body.clean-table-mode .planner-row:has(.dropzone:not(:has(.card))) { display: none !important; }
+body.clean-table-mode .year-label { width: 100px; justify-content: flex-start; align-items: top; padding: 18px 10px; font-size: 15px; font-weight: 700; background: transparent !important; border: none; }
+body.clean-table-mode .sem-label { width: 160px; justify-content: flex-start; align-items: top; padding: 18px 10px; font-size: 14px; font-weight: 600; background: transparent !important; border: none; color: #475569; }
+body.clean-table-mode .dropzone { background: transparent; padding: 18px 10px; display: flex; flex-direction: column; gap: 8px; }
+body.clean-table-mode .card { width: 100%; box-shadow: none; border: none; padding: 0; font-size: 14px; display: flex; gap: 8px; align-items: baseline; }
+body.clean-table-mode .card strong { display: inline-block; min-width: 75px; color: #0f172a; font-weight: 600; margin-bottom: 0; }
+
+@media print {
+    body { background: #fff; }
+    header, .sidebar, .toggle-btn, .filter-panel { display: none !important; }
+    .container { height: auto; display: block; }
+    .board { padding: 0; gap: 0; }
+    .planner-row { page-break-inside: avoid; border-bottom: 1px solid #94a3b8 !important; }
+    .planner-row:has(.dropzone:not(:has(.card))) { display: none !important; }
+    .year-label, .sem-label { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card { page-break-inside: avoid; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="title-area" id="course-title">Academic Study Planner</div>
+        <div class="btn-group">
+            <button class="export-btn json-header-btn" onclick="triggerImportJSON()">
+                📂 Import Template (.json)
+            </button>
+            <button class="export-btn options-btn" onclick="openOptionsModal()">
+                ⚙️ Options / Edit Template
+            </button>
+            <button class="export-btn toggle-btn" onclick="toggleLayoutMode()">
+                Toggle Table View
+            </button>
+            <button class="export-btn pdf-btn" onclick="window.print()">
+                Print / Save PDF
+            </button>
+            <button class="export-btn excel-btn" onclick="exportToExcel()">
+                Export to Excel (.xlsx)
+            </button>
+        </div>
+    </div>
+    
+    <div class="filter-panel">
+        <span class="filter-title">Show Layout Terms:</span>
+        <div id="term-filters-container" style="display: flex; gap: 15px;"></div>
+    </div>
+
+    <div class="filter-panel">
+        <span class="filter-title">Select Major / Minor:</span>
+        <select class="select-dropdown" id="major-minor-dropdown" onchange="onSpecialisationChange(this.value)">
+            <option value="">None / Core Only</option>
+        </select>
+
+        <span class="filter-title" style="margin-left:20px;">Apply Entry Pathway Template:</span>
+        <div id="pathway-buttons-container" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="sidebar">
+        <h2>Available Units</h2>
+        <div class="dropzone" id="sidebar-zone"></div>
+    </div>
+
+    <div class="board" id="board-zone">
+        <div class="planner-row passed-row" data-order="0" data-type="archive">
+            <div class="year-label y-credited">Passed</div>
+            <div class="sem-label">Completed / Credited</div>
+            <div class="dropzone" id="passed-zone"></div>
+        </div>
+    </div>
+</div>
+
+<!-- OPTIONS / EDIT TEMPLATE MODAL -->
+<div class="modal-overlay" id="options-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="margin:0; font-size:18px;">Course Template Configurator</h2>
+            <button onclick="closeOptionsModal()" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">&times;</button>
+        </div>
+
+        <div class="modal-tabs">
+            <div class="tab-group">
+                <button class="modal-tab-btn active" onclick="switchModalTab('units-tab', this)">1. Course &amp; Core Units Config</button>
+                <button class="modal-tab-btn" onclick="switchModalTab('pathways-tab', this)">2. Pathway Templates Config</button>
+                <button class="modal-tab-btn" onclick="switchModalTab('majors-tab', this)">3. Majors &amp; Minors Config</button>
+            </div>
+            <button class="refresh-view-btn" onclick="refreshOptionsView()" title="Sync current term &amp; unit edits across modal tabs">🔄 Refresh Options View</button>
+        </div>
+
+        <div class="modal-body">
+            <!-- TAB 1: CORE UNITS & COURSE DATA -->
+            <div class="tab-content active" id="units-tab">
+                <div class="config-section">
+                    <h3>Course Details &amp; Study Periods</h3>
+                    <div class="input-group">
+                        <label>Course Title Header</label>
+                        <input type="text" id="cfg-course-title">
+                    </div>
+                    <div class="input-group">
+                        <label>Active Study Periods / Terms (Comma Separated)</label>
+                        <input type="text" id="cfg-terms-list" placeholder="Semester 1, Semester 2, Trimester">
+                    </div>
+                </div>
+
+                <div class="config-section" style="background:#eef6ff; border-color:#bee3f8;">
+                    <h3 style="color:#2b6cb0;">⚡ Bulk Add Units &amp; Names</h3>
+                    <div class="input-group">
+                        <label>Paste Line-Separated "CODE Unit Name" or Delimited Units</label>
+                        <textarea id="bulk-unit-input" rows="4" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:4px; font-size:12px; font-family:monospace;" placeholder="CXA137 Anatomy and Physiology for Health Care&#10;NUR131 Concepts of Nursing 1: Introduction to the Profession&#10;NUR132 Foundations of Nursing 1"></textarea>
+                    </div>
+                    <button class="action-btn add-btn" onclick="bulkAddUnits()">Bulk Add Core Units</button>
+                </div>
+
+                <div class="config-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <h3 style="margin:0;">Core Course Units &amp; Requisites</h3>
+                        <button class="action-btn add-btn" onclick="addNewUnitRow()">+ Add Core Unit</button>
+                    </div>
+                    <table class="table-editor" id="unit-editor-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 90px;">Unit Code</th>
+                                <th>Unit Name</th>
+                                <th>Allowed Terms</th>
+                                <th>Pre-requisites</th>
+                                <th>Anti-requisites</th>
+                                <th style="width: 50px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unit-editor-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 2: PATHWAY TEMPLATES DATA -->
+            <div class="tab-content" id="pathways-tab">
+                <div class="config-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <h3 style="margin:0;">Manage Pathway Templates</h3>
+                        <button class="action-btn add-btn" onclick="addNewPathwayBlock()">+ Add New Pathway</button>
+                    </div>
+                    <div id="pathways-editor-container"></div>
+                </div>
+            </div>
+
+            <!-- TAB 3: MAJORS & MINORS DATA -->
+            <div class="tab-content" id="majors-tab">
+                <div class="config-section">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <h3 style="margin:0;">Manage Majors &amp; Minors (Additional Unit Sets)</h3>
+                        <button class="action-btn add-btn" onclick="addNewSpecialisationBlock()">+ Add Major/Minor</button>
+                    </div>
+                    <div id="majors-editor-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="modal-footer-left">
+                <button class="action-btn json-btn" onclick="exportConfigJSON()">💾 Export Template (.json)</button>
+                <button class="action-btn json-btn" onclick="triggerImportJSON()">📂 Import Template (.json)</button>
+                <input type="file" id="json-file-input" style="display:none;" accept=".json" onchange="importConfigJSON(event)">
+
+                <div class="clear-panel">
+                    <input type="checkbox" id="confirm-reset-checkbox" onchange="toggleResetButton(this.checked)">
+                    <label for="confirm-reset-checkbox" style="font-size:11px; font-weight:600; color:#9b2c2c; cursor:pointer; user-select:none;">I understand this will clear all units, pathways, and majors</label>
+                    <button class="action-btn delete-btn" id="reset-plan-btn" onclick="resetPlanToBlank()" disabled>🗑️ Reset Plan to Blank</button>
+                </div>
+            </div>
+            <div class="modal-footer-right">
+                <button class="action-btn" onclick="closeOptionsModal()" style="background:#cbd5e1; color:#1e293b;">Cancel</button>
+                <button class="action-btn" onclick="saveAndApplyOptions()" style="background:#3182ce; color:white;">Apply Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// DEFAULT BASE DATA TEMPLATE (CLEARED / BLANK)
+const DEFAULT_CONFIG = {
+    title: "Academic Study Planner",
+    terms: ["Semester 1", "Semester 2", "Trimester"],
+    years: [2026, 2027, 2028, 2029, 2030]
+};
+
+const DEFAULT_UNITS = [];
+const DEFAULT_PATHWAYS = [];
+const DEFAULT_SPECIALISATIONS = [];
+
+// IN-MEMORY SESSION DATA
+let CONFIG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+let UNITS_DATA = JSON.parse(JSON.stringify(DEFAULT_UNITS));
+let PATHWAY_TEMPLATES = JSON.parse(JSON.stringify(DEFAULT_PATHWAYS));
+let SPECIALISATIONS = JSON.parse(JSON.stringify(DEFAULT_SPECIALISATIONS));
+
+let UNIT_RULES = {};
+let dragged = null;
+let activePathway = null;
+let activeSpecialisationId = "";
+
+function initApp() {
+    document.getElementById("course-title").innerText = CONFIG.title;
+    renderTermFilters();
+    renderSpecialisationDropdown();
+    renderPathwayButtons();
+    renderBoardRows();
+    renderSidebarCards();
+    rebuildUnitRules();
+    attachDragEvents();
+    updateSemesterVisibility();
+}
+
+function getActiveUnitsPool() {
+    let pool = [...UNITS_DATA];
+    if (activeSpecialisationId) {
+        const spec = SPECIALISATIONS.find(s => s.id === activeSpecialisationId);
+        if (spec && spec.units) {
+            pool = pool.concat(spec.units);
+        }
+    }
+    return pool;
+}
+
+function rebuildUnitRules() {
+    UNIT_RULES = {};
+    const activePool = getActiveUnitsPool();
+    activePool.forEach(u => {
+        UNIT_RULES[u.code] = {
+            allowed: u.allowed,
+            prereqs: u.prereqs,
+            antireqs: u.antireqs
+        };
+    });
+}
+
+function renderTermFilters() {
+    const container = document.getElementById("term-filters-container");
+    container.innerHTML = "";
+    CONFIG.terms.forEach(term => {
+        const label = document.createElement("label");
+        label.className = "checkbox-label";
+        label.innerHTML = `<input type="checkbox" data-term="${term}" checked onchange="updateSemesterVisibility()"> ${term}`;
+        container.appendChild(label);
+    });
+}
+
+function renderSpecialisationDropdown() {
+    const dropdown = document.getElementById("major-minor-dropdown");
+    dropdown.innerHTML = '<option value="">None / Core Only</option>';
+    SPECIALISATIONS.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.id;
+        opt.innerText = `[${s.type}] ${s.name}`;
+        if (s.id === activeSpecialisationId) opt.selected = true;
+        dropdown.appendChild(opt);
+    });
+}
+
+function onSpecialisationChange(value) {
+    activeSpecialisationId = value;
+    renderSidebarCards();
+    rebuildUnitRules();
+    attachDragEvents();
+    validatePlan();
+}
+
+function renderPathwayButtons() {
+    const container = document.getElementById("pathway-buttons-container");
+    container.innerHTML = "";
+    PATHWAY_TEMPLATES.forEach(p => {
+        const btn = document.createElement("button");
+        btn.className = "template-btn";
+        btn.setAttribute("data-id", p.id);
+        btn.innerText = p.name;
+        btn.onclick = () => applyPathwayTemplate(p.id);
+        container.appendChild(btn);
+    });
+}
+
+function renderBoardRows() {
+    const board = document.getElementById("board-zone");
+    const rows = board.querySelectorAll('.planner-row:not(.passed-row)');
+    rows.forEach(r => r.remove());
+
+    let order = 1;
+    CONFIG.years.forEach(year => {
+        CONFIG.terms.forEach(term => {
+            const row = document.createElement("div");
+            row.className = "planner-row";
+            row.setAttribute("data-order", order++);
+            row.setAttribute("data-term", term);
+            row.innerHTML = `<div class="year-label y${year}">${year}</div><div class="sem-label">${term}</div><div class="dropzone"></div>`;
+            board.appendChild(row);
+        });
+    });
+}
+
+function renderSidebarCards() {
+    const sidebar = document.getElementById("sidebar-zone");
+    sidebar.innerHTML = "";
+
+    const activePool = getActiveUnitsPool();
+    let majorUnitCodes = [];
+
+    if (activeSpecialisationId) {
+        const spec = SPECIALISATIONS.find(s => s.id === activeSpecialisationId);
+        if (spec && spec.units) {
+            majorUnitCodes = spec.units.map(u => u.code);
+        }
+    }
+
+    activePool.forEach(u => {
+        const card = document.createElement("div");
+        const isMajorUnit = majorUnitCodes.includes(u.code);
+        card.className = isMajorUnit ? "card major-unit-card" : "card";
+        card.draggable = true;
+        card.setAttribute("data-code", u.code);
+        
+        let tag = isMajorUnit ? ` <span style="font-size:10px; color:#2b6cb0; font-weight:bold;">(Major/Minor Unit)</span>` : "";
+        card.innerHTML = `<strong>${u.code}${tag}</strong>${u.name}`;
+        sidebar.appendChild(card);
+    });
+}
+
+function attachDragEvents() {
+    const cards = document.querySelectorAll(".card");
+    const zones = document.querySelectorAll(".dropzone");
+
+    cards.forEach(card => {
+        card.addEventListener("dragstart", () => { dragged = card; card.classList.add("dragging"); });
+        card.addEventListener("dragend", () => { card.classList.remove("dragging"); });
+    });
+
+    zones.forEach(zone => {
+        zone.addEventListener("dragover", (e) => { e.preventDefault(); });
+        zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            if (dragged) { 
+                zone.appendChild(dragged); 
+                validatePlan();
+            }
+        });
+    });
+}
+
+function validatePlan() {
+    document.querySelectorAll(".card").forEach(card => {
+        card.classList.remove("invalid-semester", "invalid-requisite");
+    });
+
+    let scheduledUnits = [];
+    document.querySelectorAll('.board .planner-row').forEach(row => {
+        const order = parseInt(row.getAttribute('data-order'));
+        const semLabel = row.querySelector('.sem-label').innerText.trim();
+        const rowCards = row.querySelectorAll('.dropzone .card');
+        
+        rowCards.forEach(card => {
+            const code = card.getAttribute('data-code');
+            scheduledUnits.push({
+                cardElement: card,
+                code: code,
+                semester: semLabel,
+                order: order
+            });
+        });
+    });
+
+    scheduledUnits.forEach(unit => {
+        const rules = UNIT_RULES[unit.code];
+        if (!rules) return;
+
+        // Semester Check
+        if (unit.order !== 0) {
+            const isMatch = rules.allowed.some(term => unit.semester.toLowerCase() === term.toLowerCase());
+            if (!isMatch) {
+                unit.cardElement.classList.add("invalid-semester");
+            }
+        }
+
+        let missingPrereq = false;
+        let activeAntireq = false;
+
+        // Pre-requisite Check (Must be completed in a prior study period)
+        rules.prereqs.forEach(pre => {
+            const completedPrior = scheduledUnits.some(u => u.code === pre && u.order < unit.order);
+            if (!completedPrior) missingPrereq = true;
+        });
+
+        // Anti-requisite Check (Global: Cannot be scheduled anywhere on the plan)
+        rules.antireqs.forEach(anti => {
+            const existsAnywhere = scheduledUnits.some(u => u.code === anti && u.cardElement !== unit.cardElement);
+            if (existsAnywhere) activeAntireq = true;
+        });
+
+        if (missingPrereq || activeAntireq) {
+            unit.cardElement.classList.add("invalid-requisite");
+        }
+    });
+}
+
+function updateSemesterVisibility() {
+    const termToggles = {};
+    document.querySelectorAll('#term-filters-container input[type="checkbox"]').forEach(box => {
+        termToggles[box.getAttribute('data-term')] = box.checked;
+    });
+
+    document.querySelectorAll('.board .planner-row').forEach(row => {
+        if (row.hasAttribute('data-type')) return;
+        const rowTerm = row.getAttribute('data-term');
+        if (termToggles[rowTerm]) {
+            row.classList.remove('collapsed-term');
+        } else {
+            row.classList.add('collapsed-term');
+        }
+    });
+}
+
+function applyPathwayTemplate(pathwayId) {
+    const sidebarZone = document.getElementById("sidebar-zone");
+    const passedZone = document.getElementById("passed-zone");
+
+    activePathway = (activePathway === pathwayId) ? null : pathwayId;
+
+    document.querySelectorAll(".template-btn").forEach(btn => btn.classList.remove("active-template"));
+    if (activePathway) {
+        const targetBtn = document.querySelector(`.template-btn[data-id="${pathwayId}"]`);
+        if (targetBtn) targetBtn.classList.add("active-template");
+    }
+
+    Array.from(passedZone.querySelectorAll(".card")).forEach(card => sidebarZone.appendChild(card));
+
+    if (activePathway) {
+        const pathwayObj = PATHWAY_TEMPLATES.find(p => p.id === pathwayId);
+        if (pathwayObj) {
+            pathwayObj.units.forEach(code => {
+                const card = document.querySelector(`.card[data-code="${code}"]`);
+                if (card) passedZone.appendChild(card);
+            });
+        }
+    }
+
+    validatePlan();
+}
+
+// MODAL CONTROLS & TAB SYSTEM
+function openOptionsModal() {
+    document.getElementById("cfg-course-title").value = CONFIG.title;
+    document.getElementById("cfg-terms-list").value = CONFIG.terms.join(", ");
+    
+    // Reset confirmation checkbox state
+    document.getElementById("confirm-reset-checkbox").checked = false;
+    toggleResetButton(false);
+
+    renderModalUnitTable();
+    renderModalPathwayEditor();
+    renderModalSpecialisationEditor();
+    document.getElementById("options-modal").style.display = "flex";
+}
+
+function closeOptionsModal() {
+    document.getElementById("options-modal").style.display = "none";
+}
+
+function switchModalTab(tabId, btn) {
+    document.querySelectorAll(".modal-tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+    
+    btn.classList.add("active");
+    document.getElementById(tabId).classList.add("active");
+}
+
+function parseDelimitedText(rawText) {
+    if (!rawText) return [];
+    const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const parsed = [];
+
+    lines.forEach(line => {
+        const match = line.match(/^(\S+)\s+(.*)$/);
+        if (match) {
+            parsed.push({ code: match[1].toUpperCase(), name: match[2].trim() });
+        } else {
+            parsed.push({ code: line.toUpperCase(), name: "Unit Name Required" });
+        }
+    });
+    return parsed;
+}
+
+function bulkAddUnits() {
+    const inputArea = document.getElementById("bulk-unit-input");
+    const units = parseDelimitedText(inputArea.value.trim());
+    units.forEach(u => addNewUnitRowWithData(u.code, u.name));
+    inputArea.value = "";
+}
+
+function bulkAddUnitsToSpec(btn) {
+    const cardBlock = btn.closest(".pathway-card-editor");
+    const inputArea = cardBlock.querySelector(".spec-bulk-unit-input");
+    const tbody = cardBlock.querySelector(".spec-unit-tbody");
+    
+    const units = parseDelimitedText(inputArea.value.trim());
+    units.forEach(u => addUnitToSpecTableWithData(tbody, u.code, u.name));
+    inputArea.value = "";
+}
+
+function addNewUnitRowWithData(code, name) {
+    const tbody = document.getElementById("unit-editor-tbody");
+    const row = document.createElement("tr");
+    let termsCheckboxes = CONFIG.terms.map(t => {
+        return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="cfg-term-chk" data-term="${t}" checked> ${t}</label>`;
+    }).join('');
+
+    row.innerHTML = `
+        <td><input type="text" class="cfg-code" value="${code}"></td>
+        <td><input type="text" class="cfg-name" value="${name}"></td>
+        <td>${termsCheckboxes}</td>
+        <td><input type="text" class="cfg-pre" placeholder="Comma separated"></td>
+        <td><input type="text" class="cfg-anti" placeholder="Comma separated"></td>
+        <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
+    `;
+    tbody.appendChild(row);
+}
+
+function toggleResetButton(isChecked) {
+    document.getElementById("reset-plan-btn").disabled = !isChecked;
+}
+
+function resetPlanToBlank() {
+    CONFIG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+    UNITS_DATA = JSON.parse(JSON.stringify(DEFAULT_UNITS));
+    PATHWAY_TEMPLATES = JSON.parse(JSON.stringify(DEFAULT_PATHWAYS));
+    SPECIALISATIONS = JSON.parse(JSON.stringify(DEFAULT_SPECIALISATIONS));
+
+    activeSpecialisationId = "";
+    activePathway = null;
+
+    openOptionsModal();
+    initApp();
+}
+
+function syncModalDraftData() {
+    CONFIG.terms = document.getElementById("cfg-terms-list").value.split(",").map(s => s.trim()).filter(Boolean);
+
+    // Sync Tab 1 (Core Units)
+    const unitRows = document.querySelectorAll("#unit-editor-tbody tr");
+    let currentUnits = [];
+    unitRows.forEach(row => {
+        const code = row.querySelector(".cfg-code").value.trim();
+        const name = row.querySelector(".cfg-name").value.trim();
+        let allowed = [];
+        row.querySelectorAll(".cfg-term-chk:checked").forEach(chk => {
+            allowed.push(chk.getAttribute("data-term"));
+        });
+        const prereqs = row.querySelector(".cfg-pre").value.split(",").map(s => s.trim()).filter(Boolean);
+        const antireqs = row.querySelector(".cfg-anti").value.split(",").map(s => s.trim()).filter(Boolean);
+
+        if (code) currentUnits.push({ code, name, allowed, prereqs, antireqs });
+    });
+    UNITS_DATA = currentUnits;
+
+    // Sync Tab 2 (Pathways)
+    const pathwayBlocks = document.querySelectorAll("#pathways-editor-container .pathway-card-editor");
+    let currentPathways = [];
+    pathwayBlocks.forEach(block => {
+        const titleInput = block.querySelector(".pathway-title-input");
+        const name = titleInput.value.trim();
+        const id = titleInput.getAttribute("data-id") || `pathway_${Date.now()}`;
+        let units = [];
+        block.querySelectorAll(".pathway-unit-chk:checked").forEach(chk => {
+            units.push(chk.getAttribute("data-code"));
+        });
+        if (name) currentPathways.push({ id, name, units });
+    });
+    PATHWAY_TEMPLATES = currentPathways;
+
+    // Sync Tab 3 (Majors/Minors)
+    const specBlocks = document.querySelectorAll("#majors-editor-container .pathway-card-editor");
+    let currentSpecs = [];
+    specBlocks.forEach(block => {
+        const name = block.querySelector(".spec-title-input").value.trim();
+        const type = block.querySelector(".spec-type-select").value;
+        const id = block.querySelector(".spec-title-input").getAttribute("data-id") || `spec_${Date.now()}`;
+        
+        let units = [];
+        block.querySelectorAll(".spec-unit-tbody tr").forEach(row => {
+            const code = row.querySelector(".spec-code").value.trim();
+            const uName = row.querySelector(".spec-name").value.trim();
+            let allowed = [];
+            row.querySelectorAll(".spec-term-chk:checked").forEach(chk => {
+                allowed.push(chk.getAttribute("data-term"));
+            });
+            const prereqs = row.querySelector(".spec-pre").value.split(",").map(s => s.trim()).filter(Boolean);
+            const antireqs = row.querySelector(".spec-anti").value.split(",").map(s => s.trim()).filter(Boolean);
+
+            if (code) units.push({ code, name: uName, allowed, prereqs, antireqs });
+        });
+
+        if (name) currentSpecs.push({ id, type, name, units });
+    });
+    SPECIALISATIONS = currentSpecs;
+}
+
+function refreshOptionsView() {
+    syncModalDraftData();
+    renderModalUnitTable();
+    renderModalPathwayEditor();
+    renderModalSpecialisationEditor();
+}
+
+function renderModalUnitTable() {
+    const tbody = document.getElementById("unit-editor-tbody");
+    tbody.innerHTML = "";
+    UNITS_DATA.forEach(unit => {
+        const row = document.createElement("tr");
+        let termsCheckboxes = CONFIG.terms.map(t => {
+            const checked = unit.allowed.includes(t) ? 'checked' : '';
+            return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="cfg-term-chk" data-term="${t}" ${checked}> ${t}</label>`;
+        }).join('');
+
+        row.innerHTML = `
+            <td><input type="text" class="cfg-code" value="${unit.code}"></td>
+            <td><input type="text" class="cfg-name" value="${unit.name}"></td>
+            <td>${termsCheckboxes}</td>
+            <td><input type="text" class="cfg-pre" value="${unit.prereqs.join(', ')}"></td>
+            <td><input type="text" class="cfg-anti" value="${unit.antireqs.join(', ')}"></td>
+            <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function addNewUnitRow() {
+    addNewUnitRowWithData("", "");
+}
+
+function deleteModalUnitRow(btn) {
+    btn.closest("tr").remove();
+}
+
+function renderModalPathwayEditor() {
+    const container = document.getElementById("pathways-editor-container");
+    container.innerHTML = "";
+
+    const activePool = getActiveUnitsPool();
+    PATHWAY_TEMPLATES.forEach(pathway => {
+        const div = document.createElement("div");
+        div.className = "pathway-card-editor";
+        let unitBoxes = activePool.map(u => {
+            const isChecked = pathway.units.includes(u.code) ? 'checked' : '';
+            return `<label style="font-size:11px; font-weight:600;"><input type="checkbox" class="pathway-unit-chk" data-code="${u.code}" ${isChecked}> ${u.code}</label>`;
+        }).join('');
+
+        div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:8px;">
+                <input type="text" class="pathway-title-input" value="${pathway.name}" style="flex:1; font-weight:bold; padding:6px; font-size:13px;" data-id="${pathway.id}">
+                <button class="action-btn delete-btn" onclick="deletePathwayBlock(this)">Remove Pathway</button>
+            </div>
+            <div style="font-size:11px; color:#64748b; margin-bottom:4px;">Select Units Credited/Passed in this Pathway:</div>
+            <div class="pathway-unit-selector">${unitBoxes}</div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function addNewPathwayBlock() {
+    const container = document.getElementById("pathways-editor-container");
+    const div = document.createElement("div");
+    div.className = "pathway-card-editor";
+    
+    const activePool = getActiveUnitsPool();
+    let unitBoxes = activePool.map(u => {
+        return `<label style="font-size:11px; font-weight:600;"><input type="checkbox" class="pathway-unit-chk" data-code="${u.code}"> ${u.code}</label>`;
+    }).join('');
+
+    div.innerHTML = `
+        <div style="display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:8px;">
+            <input type="text" class="pathway-title-input" placeholder="New Pathway Title" style="flex:1; font-weight:bold; padding:6px; font-size:13px;" data-id="pathway_${Date.now()}">
+            <button class="action-btn delete-btn" onclick="deletePathwayBlock(this)">Remove Pathway</button>
+        </div>
+        <div style="font-size:11px; color:#64748b; margin-bottom:4px;">Select Units Credited/Passed in this Pathway:</div>
+        <div class="pathway-unit-selector">${unitBoxes}</div>
+    `;
+    container.appendChild(div);
+}
+
+function deletePathwayBlock(btn) {
+    btn.closest(".pathway-card-editor").remove();
+}
+
+function renderModalSpecialisationEditor() {
+    const container = document.getElementById("majors-editor-container");
+    container.innerHTML = "";
+
+    SPECIALISATIONS.forEach(spec => {
+        const div = document.createElement("div");
+        div.className = "pathway-card-editor";
+
+        let unitRowsHtml = spec.units.map(u => {
+            let termsCheckboxes = CONFIG.terms.map(t => {
+                const checked = u.allowed.includes(t) ? 'checked' : '';
+                return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="spec-term-chk" data-term="${t}" ${checked}> ${t}</label>`;
+            }).join('');
+
+            return `
+                <tr>
+                    <td><input type="text" class="spec-code" value="${u.code}"></td>
+                    <td><input type="text" class="spec-name" value="${u.name}"></td>
+                    <td>${termsCheckboxes}</td>
+                    <td><input type="text" class="spec-pre" value="${u.prereqs ? u.prereqs.join(', ') : ''}"></td>
+                    <td><input type="text" class="spec-anti" value="${u.antireqs ? u.antireqs.join(', ') : ''}"></td>
+                    <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
+                </tr>
+            `;
+        }).join('');
+
+        div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:12px;">
+                <select class="spec-type-select select-dropdown">
+                    <option value="Major" ${spec.type === 'Major' ? 'selected' : ''}>Major</option>
+                    <option value="Minor" ${spec.type === 'Minor' ? 'selected' : ''}>Minor</option>
+                </select>
+                <input type="text" class="spec-title-input" value="${spec.name}" style="flex:1; font-weight:bold; padding:6px; font-size:13px;" data-id="${spec.id}">
+                <button class="action-btn add-btn" onclick="addUnitToSpecTable(this)">+ Add Unit</button>
+                <button class="action-btn delete-btn" onclick="deletePathwayBlock(this)">Remove</button>
+            </div>
+
+            <div style="background:#eef6ff; border:1px solid #bee3f8; padding:10px; border-radius:4px; margin-bottom:12px;">
+                <div style="font-size:12px; font-weight:700; color:#2b6cb0; margin-bottom:4px;">⚡ Bulk Add Units to this Major/Minor</div>
+                <textarea class="spec-bulk-unit-input" rows="3" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:4px; font-size:11px; font-family:monospace;" placeholder="Paste line-separated 'CODE Unit Name' here..."></textarea>
+                <button class="action-btn add-btn" style="margin-top:6px;" onclick="bulkAddUnitsToSpec(this)">Bulk Add to ${spec.type || 'Major/Minor'}</button>
+            </div>
+
+            <div style="font-size:11px; color:#64748b; margin-bottom:4px;">Units Belonging to this Major/Minor:</div>
+            <table class="table-editor">
+                <thead>
+                    <tr>
+                        <th style="width: 90px;">Unit Code</th>
+                        <th>Unit Name</th>
+                        <th>Allowed Terms</th>
+                        <th>Pre-requisites</th>
+                        <th>Anti-requisites</th>
+                        <th style="width: 50px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="spec-unit-tbody">${unitRowsHtml}</tbody>
+            </table>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function addNewSpecialisationBlock() {
+    const container = document.getElementById("majors-editor-container");
+    const div = document.createElement("div");
+    div.className = "pathway-card-editor";
+
+    div.innerHTML = `
+        <div style="display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:12px;">
+            <select class="spec-type-select select-dropdown">
+                <option value="Major">Major</option>
+                <option value="Minor">Minor</option>
+            </select>
+            <input type="text" class="spec-title-input" placeholder="e.g. Medical Research Major" style="flex:1; font-weight:bold; padding:6px; font-size:13px;" data-id="spec_${Date.now()}">
+            <button class="action-btn add-btn" onclick="addUnitToSpecTable(this)">+ Add Unit</button>
+            <button class="action-btn delete-btn" onclick="deletePathwayBlock(this)">Remove</button>
+        </div>
+
+        <div style="background:#eef6ff; border:1px solid #bee3f8; padding:10px; border-radius:4px; margin-bottom:12px;">
+            <div style="font-size:12px; font-weight:700; color:#2b6cb0; margin-bottom:4px;">⚡ Bulk Add Units to this Major/Minor</div>
+            <textarea class="spec-bulk-unit-input" rows="3" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:4px; font-size:11px; font-family:monospace;" placeholder="Paste line-separated 'CODE Unit Name' here..."></textarea>
+            <button class="action-btn add-btn" style="margin-top:6px;" onclick="bulkAddUnitsToSpec(this)">Bulk Add to Major/Minor</button>
+        </div>
+
+        <div style="font-size:11px; color:#64748b; margin-bottom:4px;">Units Belonging to this Major/Minor:</div>
+        <table class="table-editor">
+            <thead>
+                <tr>
+                    <th style="width: 90px;">Unit Code</th>
+                    <th>Unit Name</th>
+                    <th>Allowed Terms</th>
+                    <th>Pre-requisites</th>
+                    <th>Anti-requisites</th>
+                    <th style="width: 50px;">Action</th>
+                </tr>
+            </thead>
+            <tbody class="spec-unit-tbody"></tbody>
+        </table>
+    `;
+    container.appendChild(div);
+}
+
+function addUnitToSpecTable(btn) {
+    const tbody = btn.closest(".pathway-card-editor").querySelector(".spec-unit-tbody");
+    addUnitToSpecTableWithData(tbody, "", "");
+}
+
+function addUnitToSpecTableWithData(tbody, code, name) {
+    const row = document.createElement("tr");
+
+    let termsCheckboxes = CONFIG.terms.map(t => {
+        return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="spec-term-chk" data-term="${t}" checked> ${t}</label>`;
+    }).join('');
+
+    row.innerHTML = `
+        <td><input type="text" class="spec-code" value="${code}" placeholder="CODE"></td>
+        <td><input type="text" class="spec-name" value="${name}" placeholder="Unit Name"></td>
+        <td>${termsCheckboxes}</td>
+        <td><input type="text" class="spec-pre" placeholder="Comma separated"></td>
+        <td><input type="text" class="spec-anti" placeholder="Comma separated"></td>
+        <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
+    `;
+    tbody.appendChild(row);
+}
+
+function saveAndApplyOptions() {
+    CONFIG.title = document.getElementById("cfg-course-title").value.trim();
+    syncModalDraftData();
+    initApp();
+    closeOptionsModal();
+}
+
+function exportConfigJSON() {
+    syncModalDraftData();
+    const exportData = {
+        config: CONFIG,
+        units: UNITS_DATA,
+        pathways: PATHWAY_TEMPLATES,
+        specialisations: SPECIALISATIONS
+    };
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${CONFIG.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_template.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function triggerImportJSON() {
+    document.getElementById("json-file-input").click();
+}
+
+function importConfigJSON(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            if (importedData.config && importedData.units && importedData.pathways) {
+                CONFIG = importedData.config;
+                UNITS_DATA = importedData.units;
+                PATHWAY_TEMPLATES = importedData.pathways;
+                SPECIALISATIONS = importedData.specialisations || [];
+
+                activeSpecialisationId = "";
+                activePathway = null;
+
+                if (document.getElementById("options-modal").style.display === "flex") {
+                    openOptionsModal();
+                }
+                initApp();
+                alert("Template configuration loaded successfully!");
+            } else {
+                alert("Invalid template JSON file format.");
+            }
+        } catch (err) {
+            alert("Error parsing JSON file.");
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = "";
+}
+
+function toggleLayoutMode() {
+    document.body.classList.toggle("clean-table-mode");
+}
+
+function exportToExcel() {
+    const data = [["Year", "Semester / Term", "Unit Code", "Unit Name"]];
+
+    document.querySelectorAll('.board .planner-row').forEach(row => {
+        if (row.classList.contains('collapsed-term')) return;
+
+        const yearText = row.querySelector('.year-label') ? row.querySelector('.year-label').innerText.trim() : '';
+        const semText = row.querySelector('.sem-label') ? row.querySelector('.sem-label').innerText.replace(/\n/g, ' ').trim() : '';
+        const cardsInRow = row.querySelectorAll('.dropzone .card');
+
+        if (cardsInRow.length === 0) {
+            data.push([yearText, semText, "", "No units scheduled"]);
+        } else {
+            cardsInRow.forEach(card => {
+                const code = card.querySelector('strong').innerText.trim();
+                const title = card.innerText.replace(code, '').replace(/⚠️.*/g, '').trim();
+                data.push([yearText, semText, code, title]);
+            });
+        }
+    });
+
+    const worksheet = XLSX.utils.aoa_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Study Plan");
+
+    worksheet['!cols'] = [{ wch: 12 }, { wch: 22 }, { wch: 12 }, { wch: 60 }];
+    XLSX.writeFile(workbook, "Study_Plan.xlsx");
+}
+
+window.addEventListener('DOMContentLoaded', initApp);
+</script>
+
+</body></html>
