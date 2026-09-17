@@ -569,9 +569,7 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
     <div class="filter-panel">
         <span class="filter-title">Load Preset Course:</span>
         <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
-            <option value="">-- Select a Preset Course --</option>
-            <option value="bachelor_of_biomedicine__h3x__study_planner_template.json">Bachelor of Biomedicine (H3X)</option>
-            <option value="bachelor_of_nursing.json">Bachelor of Nursing</option>
+            <option value="">-- Checking directory... --</option>
         </select>
     </div>
 
@@ -628,23 +626,10 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
             <!-- TAB 0: TEMPLATE LIBRARY -->
             <div class="tab-content active" id="library-tab">
                 <div class="config-section">
-                    <h3>Available Directory Course Presets</h3>
-                    <p style="font-size:12px; color:#64748b; margin-top:-6px; margin-bottom:15px;">Select a pre-built course structure from your repository directory to populate the planner.</p>
+                    <h3>Available Verified Course Presets</h3>
+                    <p style="font-size:12px; color:#64748b; margin-top:-6px; margin-bottom:15px;">Only JSON template files verified to exist in your <code>/templates</code> folder are displayed below.</p>
                     <div class="template-card-grid" id="template-library-grid">
-                        <div class="template-card">
-                            <div>
-                                <strong style="display:block; font-size:14px; color:#1e293b;">Bachelor of Biomedicine (H3X)</strong>
-                                <span style="font-size:11px; color:#64748b;">File: bachelor_of_biomedicine__h3x__study_planner_template.json</span>
-                            </div>
-                            <button class="action-btn add-btn" onclick="loadPresetCourse('bachelor_of_biomedicine__h3x__study_planner_template.json')">Load This Template</button>
-                        </div>
-                        <div class="template-card">
-                            <div>
-                                <strong style="display:block; font-size:14px; color:#1e293b;">Bachelor of Nursing</strong>
-                                <span style="font-size:11px; color:#64748b;">File: bachelor_of_nursing.json</span>
-                            </div>
-                            <button class="action-btn add-btn" onclick="loadPresetCourse('bachelor_of_nursing.json')">Load This Template</button>
-                        </div>
+                        <div style="font-size:12px; color:#64748b;">Verifying directory files...</div>
                     </div>
                 </div>
             </div>
@@ -734,6 +719,15 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
 </div>
 
 <script>
+// MASTER MANIFEST OF CANDIDATE PRESET FILES TO PROBE
+const POSSIBLE_PRESETS = [
+    { file: "bachelor_of_biomedicine__h3x__study_planner_template.json", name: "Bachelor of Biomedicine (H3X)" },
+    { file: "bachelor_of_nursing.json", name: "Bachelor of Nursing" },
+    { file: "bachelor_of_health_science.json", name: "Bachelor of Health Science" }
+];
+
+let VERIFIED_PRESETS = [];
+
 // DEFAULT BASE DATA TEMPLATE (CLEARED / BLANK)
 const DEFAULT_CONFIG = {
     title: "Academic Study Planner",
@@ -755,6 +749,64 @@ let UNIT_RULES = {};
 let dragged = null;
 let activePathway = null;
 let activeSpecialisationId = "";
+
+async function checkAvailablePresets() {
+    VERIFIED_PRESETS = [];
+    
+    for (const preset of POSSIBLE_PRESETS) {
+        try {
+            const res = await fetch(`./templates/${preset.file}`, { method: 'HEAD' });
+            if (res.ok) {
+                VERIFIED_PRESETS.push(preset);
+            }
+        } catch (e) {
+            // File does not exist or CORS blocked local file access
+        }
+    }
+    
+    renderPresetUI();
+}
+
+function renderPresetUI() {
+    // 1. Render Header Dropdown
+    const dropdown = document.getElementById("preset-course-dropdown");
+    dropdown.innerHTML = '<option value="">-- Select a Preset Course --</option>';
+
+    if (VERIFIED_PRESETS.length === 0) {
+        const opt = document.createElement("option");
+        opt.disabled = true;
+        opt.innerText = "No templates found in /templates";
+        dropdown.appendChild(opt);
+    } else {
+        VERIFIED_PRESETS.forEach(p => {
+            const opt = document.createElement("option");
+            opt.value = p.file;
+            opt.innerText = p.name;
+            dropdown.appendChild(opt);
+        });
+    }
+
+    // 2. Render Modal Library Grid
+    const grid = document.getElementById("template-library-grid");
+    grid.innerHTML = "";
+
+    if (VERIFIED_PRESETS.length === 0) {
+        grid.innerHTML = '<div style="font-size:13px; color:#e53e3e; font-weight:600;">No JSON template files detected in your /templates directory. Add template JSON files to populate this library.</div>';
+    } else {
+        VERIFIED_PRESETS.forEach(p => {
+            const card = document.createElement("div");
+            card.className = "template-card";
+            card.innerHTML = `
+                <div>
+                    <strong style="display:block; font-size:14px; color:#1e293b;">${p.name}</strong>
+                    <span style="font-size:11px; color:#64748b;">File: ${p.file}</span>
+                </div>
+                <button class="action-btn add-btn" onclick="loadPresetCourse('${p.file}')">Load This Template</button>
+            `;
+            grid.appendChild(card);
+        });
+    }
+}
 
 function initApp() {
     document.getElementById("course-title").innerText = CONFIG.title;
@@ -1020,7 +1072,6 @@ async function loadPresetCourse(fileName) {
             activeSpecialisationId = "";
             activePathway = null;
 
-            // Sync Header Dropdown if trigger originated from modal
             const dropdown = document.getElementById("preset-course-dropdown");
             if (dropdown) dropdown.value = fileName;
 
@@ -1464,7 +1515,10 @@ function exportToExcel() {
     XLSX.writeFile(workbook, "Study_Plan.xlsx");
 }
 
-window.addEventListener('DOMContentLoaded', initApp);
+window.addEventListener('DOMContentLoaded', () => {
+    initApp();
+    checkAvailablePresets();
+});
 </script>
 
 </body></html>
