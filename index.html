@@ -387,11 +387,24 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .modal-footer-left, .modal-footer-right {
     display: flex;
+    align-items: center;
     gap: 10px;
+}
+
+.clear-panel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    padding: 4px 10px;
+    border-radius: 4px;
 }
 
 .config-section {
@@ -482,6 +495,7 @@ header{
 }
 .add-btn { background: #38a169; color: white; }
 .delete-btn { background: #e53e3e; color: white; padding: 4px 8px; }
+.delete-btn:disabled { background: #feb2b2; cursor: not-allowed; opacity: 0.6; }
 .json-btn { background: #d69e2e; color: white; }
 
 /* Print mode styles retained */
@@ -535,6 +549,14 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
         </div>
     </div>
     
+    <div class="filter-panel">
+        <span class="filter-title">Load Preset Course:</span>
+        <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
+            <option value="">-- Select a Preset Course --</option>
+            <option value="bachelor_of_biomedicine__h3x__study_planner_template.json">Bachelor of Biomedicine (H3X)</option>
+        </select>
+    </div>
+
     <div class="filter-panel">
         <span class="filter-title">Show Layout Terms:</span>
         <div id="term-filters-container" style="display: flex; gap: 15px;"></div>
@@ -656,6 +678,12 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
                 <button class="action-btn json-btn" onclick="exportConfigJSON()">💾 Export Template (.json)</button>
                 <button class="action-btn json-btn" onclick="triggerImportJSON()">📂 Import Template (.json)</button>
                 <input type="file" id="json-file-input" style="display:none;" accept=".json" onchange="importConfigJSON(event)">
+
+                <div class="clear-panel">
+                    <input type="checkbox" id="confirm-reset-checkbox" onchange="toggleResetButton(this.checked)">
+                    <label for="confirm-reset-checkbox" style="font-size:11px; font-weight:600; color:#9b2c2c; cursor:pointer; user-select:none;">I understand this will clear all units, pathways, and majors</label>
+                    <button class="action-btn delete-btn" id="reset-plan-btn" onclick="resetPlanToBlank()" disabled>🗑️ Reset Plan to Blank</button>
+                </div>
             </div>
             <div class="modal-footer-right">
                 <button class="action-btn" onclick="closeOptionsModal()" style="background:#cbd5e1; color:#1e293b;">Cancel</button>
@@ -932,11 +960,47 @@ function applyPathwayTemplate(pathwayId) {
     validatePlan();
 }
 
+// PRESET COURSE LOADER (GITHUB PAGES COMPATIBLE)
+async function loadPresetCourse(fileName) {
+    if (!fileName) return;
+
+    try {
+        const response = await fetch(`./templates/${fileName}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch preset (${response.status} ${response.statusText})`);
+        }
+        
+        const importedData = await response.json();
+        if (importedData.config && importedData.units) {
+            CONFIG = importedData.config;
+            UNITS_DATA = importedData.units;
+            PATHWAY_TEMPLATES = importedData.pathways || [];
+            SPECIALISATIONS = importedData.specialisations || [];
+
+            activeSpecialisationId = "";
+            activePathway = null;
+
+            initApp();
+            if (document.getElementById("options-modal").style.display === "flex") {
+                openOptionsModal();
+            }
+        } else {
+            alert("Invalid preset JSON file format.");
+        }
+    } catch (err) {
+        console.error("Preset load error:", err);
+        alert("Could not load selected preset file. Make sure the file exists in your repository's /templates folder.");
+    }
+}
+
 // MODAL CONTROLS & TAB SYSTEM
 function openOptionsModal() {
     document.getElementById("cfg-course-title").value = CONFIG.title;
     document.getElementById("cfg-terms-list").value = CONFIG.terms.join(", ");
     
+    document.getElementById("confirm-reset-checkbox").checked = false;
+    toggleResetButton(false);
+
     renderModalUnitTable();
     renderModalPathwayEditor();
     renderModalSpecialisationEditor();
@@ -1004,6 +1068,25 @@ function addNewUnitRowWithData(code, name) {
         <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
     `;
     tbody.appendChild(row);
+}
+
+function toggleResetButton(isChecked) {
+    document.getElementById("reset-plan-btn").disabled = !isChecked;
+}
+
+function resetPlanToBlank() {
+    CONFIG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+    UNITS_DATA = JSON.parse(JSON.stringify(DEFAULT_UNITS));
+    PATHWAY_TEMPLATES = JSON.parse(JSON.stringify(DEFAULT_PATHWAYS));
+    SPECIALISATIONS = JSON.parse(JSON.stringify(DEFAULT_SPECIALISATIONS));
+
+    activeSpecialisationId = "";
+    activePathway = null;
+
+    document.getElementById("preset-course-dropdown").value = "";
+
+    openOptionsModal();
+    initApp();
 }
 
 function syncModalDraftData() {
