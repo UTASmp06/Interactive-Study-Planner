@@ -68,8 +68,6 @@ header{
 .toggle-btn:hover { background-color: #2b6cb0; }
 .options-btn { background-color: #805ad5; }
 .options-btn:hover { background-color: #6b46c1; }
-.json-header-btn { background-color: #d69e2e; }
-.json-header-btn:hover { background-color: #b7791f; }
 
 .filter-panel {
     display: flex;
@@ -421,6 +419,28 @@ header{
     margin-bottom: 12px;
 }
 
+.template-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
+}
+
+.template-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    transition: border-color 0.2s;
+}
+
+.template-card:hover {
+    border-color: #3182ce;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -531,9 +551,6 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
     <div class="header-top">
         <div class="title-area" id="course-title">Academic Study Planner</div>
         <div class="btn-group">
-            <button class="export-btn json-header-btn" onclick="triggerImportJSON()">
-                📂 Import Template (.json)
-            </button>
             <button class="export-btn options-btn" onclick="openOptionsModal()">
                 ⚙️ Options / Edit Template
             </button>
@@ -554,6 +571,7 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
         <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
             <option value="">-- Select a Preset Course --</option>
             <option value="bachelor_of_biomedicine__h3x__study_planner_template.json">Bachelor of Biomedicine (H3X)</option>
+            <option value="bachelor_of_nursing.json">Bachelor of Nursing</option>
         </select>
     </div>
 
@@ -598,7 +616,8 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
 
         <div class="modal-tabs">
             <div class="tab-group">
-                <button class="modal-tab-btn active" onclick="switchModalTab('units-tab', this)">1. Course &amp; Core Units Config</button>
+                <button class="modal-tab-btn active" onclick="switchModalTab('library-tab', this)">📚 Course Template Library</button>
+                <button class="modal-tab-btn" onclick="switchModalTab('units-tab', this)">1. Core Units Config</button>
                 <button class="modal-tab-btn" onclick="switchModalTab('pathways-tab', this)">2. Pathway Templates Config</button>
                 <button class="modal-tab-btn" onclick="switchModalTab('majors-tab', this)">3. Majors &amp; Minors Config</button>
             </div>
@@ -606,8 +625,32 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
         </div>
 
         <div class="modal-body">
+            <!-- TAB 0: TEMPLATE LIBRARY -->
+            <div class="tab-content active" id="library-tab">
+                <div class="config-section">
+                    <h3>Available Directory Course Presets</h3>
+                    <p style="font-size:12px; color:#64748b; margin-top:-6px; margin-bottom:15px;">Select a pre-built course structure from your repository directory to populate the planner.</p>
+                    <div class="template-card-grid" id="template-library-grid">
+                        <div class="template-card">
+                            <div>
+                                <strong style="display:block; font-size:14px; color:#1e293b;">Bachelor of Biomedicine (H3X)</strong>
+                                <span style="font-size:11px; color:#64748b;">File: bachelor_of_biomedicine__h3x__study_planner_template.json</span>
+                            </div>
+                            <button class="action-btn add-btn" onclick="loadPresetCourse('bachelor_of_biomedicine__h3x__study_planner_template.json')">Load This Template</button>
+                        </div>
+                        <div class="template-card">
+                            <div>
+                                <strong style="display:block; font-size:14px; color:#1e293b;">Bachelor of Nursing</strong>
+                                <span style="font-size:11px; color:#64748b;">File: bachelor_of_nursing.json</span>
+                            </div>
+                            <button class="action-btn add-btn" onclick="loadPresetCourse('bachelor_of_nursing.json')">Load This Template</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- TAB 1: CORE UNITS & COURSE DATA -->
-            <div class="tab-content active" id="units-tab">
+            <div class="tab-content" id="units-tab">
                 <div class="config-section">
                     <h3>Course Details &amp; Study Periods</h3>
                     <div class="input-group">
@@ -676,9 +719,6 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
         <div class="modal-footer">
             <div class="modal-footer-left">
                 <button class="action-btn json-btn" onclick="exportConfigJSON()">💾 Export Template (.json)</button>
-                <button class="action-btn json-btn" onclick="triggerImportJSON()">📂 Import Template (.json)</button>
-                <input type="file" id="json-file-input" style="display:none;" accept=".json" onchange="importConfigJSON(event)">
-
                 <div class="clear-panel">
                     <input type="checkbox" id="confirm-reset-checkbox" onchange="toggleResetButton(this.checked)">
                     <label for="confirm-reset-checkbox" style="font-size:11px; font-weight:600; color:#9b2c2c; cursor:pointer; user-select:none;">I understand this will clear all units, pathways, and majors</label>
@@ -979,6 +1019,10 @@ async function loadPresetCourse(fileName) {
 
             activeSpecialisationId = "";
             activePathway = null;
+
+            // Sync Header Dropdown if trigger originated from modal
+            const dropdown = document.getElementById("preset-course-dropdown");
+            if (dropdown) dropdown.value = fileName;
 
             initApp();
             if (document.getElementById("options-modal").style.display === "flex") {
@@ -1385,43 +1429,6 @@ function exportConfigJSON() {
     a.download = `${CONFIG.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_template.json`;
     a.click();
     URL.revokeObjectURL(url);
-}
-
-function triggerImportJSON() {
-    document.getElementById("json-file-input").click();
-}
-
-function importConfigJSON(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            const importedData = JSON.parse(e.target.result);
-            if (importedData.config && importedData.units && importedData.pathways) {
-                CONFIG = importedData.config;
-                UNITS_DATA = importedData.units;
-                PATHWAY_TEMPLATES = importedData.pathways;
-                SPECIALISATIONS = importedData.specialisations || [];
-
-                activeSpecialisationId = "";
-                activePathway = null;
-
-                if (document.getElementById("options-modal").style.display === "flex") {
-                    openOptionsModal();
-                }
-                initApp();
-                alert("Template configuration loaded successfully!");
-            } else {
-                alert("Invalid template JSON file format.");
-            }
-        } catch (err) {
-            alert("Error parsing JSON file.");
-        }
-    };
-    reader.readAsText(file);
-    event.target.value = "";
 }
 
 function toggleLayoutMode() {
