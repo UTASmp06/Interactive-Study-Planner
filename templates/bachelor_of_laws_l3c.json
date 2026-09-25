@@ -1,0 +1,320 @@
+{
+  "config": {
+    "title": "Bachelor of Laws (L3C)",
+    "terms": [
+      "Semester 1",
+      "Semester 2"
+    ],
+    "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "units": [
+    {
+      "code": "LAW102",
+      "name": "International Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW106",
+      "name": "Torts",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW107",
+      "name": "Foundations of Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW108",
+      "name": "Legal Reasoning and Technological Change",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW218",
+      "name": "Criminal Law: Homicide and Other Complex Offences",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW229",
+      "name": "Criminal Law: Principles and Processes",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW250",
+      "name": "Constitutional Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW251",
+      "name": "Contract Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW253",
+      "name": "Foundations of Public Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW262",
+      "name": "Private Law Obligations and Remedies",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW301",
+      "name": "Administrative Law and Applied Statutory Interpretation",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW305",
+      "name": "Corporations Law 1",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW353",
+      "name": "Equity and Trusts",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW354",
+      "name": "Property Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW355",
+      "name": "Civil Procedure",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW422",
+      "name": "Evidence",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW452",
+      "name": "Legal Ethics",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW400",
+      "name": "Law Honours",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW498",
+      "name": "Honours Research A",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAW499",
+      "name": "Honours Research B",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX1",
+      "name": "Law Elective 1",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX2",
+      "name": "Law Elective 2",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX3",
+      "name": "Law Elective 3",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX4",
+      "name": "Law Elective 4",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX5",
+      "name": "Law Elective 5",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "LAWXX6",
+      "name": "Law Elective 6",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "ABCXX1",
+      "name": "Student Elective 1",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "ABCXX2",
+      "name": "Student Elective 2",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "ABCXX3",
+      "name": "Student Elective 3",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "ABCXX4",
+      "name": "Student Elective 4",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    }
+  ],
+  "pathways": [],
+  "specialisations": []
+}

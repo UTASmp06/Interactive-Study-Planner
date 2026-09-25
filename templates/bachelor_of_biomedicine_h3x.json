@@ -1,0 +1,532 @@
+{
+  "config": {
+    "title": "Bachelor of Biomedicine (H3X) Study Planner",
+    "terms": [
+      "Semester 1",
+      "Semester 2"
+    ],
+    "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "units": [
+    {
+      "code": "CAM107",
+      "name": "Cellular Basis of Disease",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "CBA265",
+      "name": "Molecular Biology in Health & Disease",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": []
+    },
+    {
+      "code": "CSA116",
+      "name": "Molecular Basis of Pharmaceutics and Pharmacology",
+      "allowed": [
+        "Semester 1"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "CXA211",
+      "name": "Immunology",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": []
+    },
+    {
+      "code": "CZZ101",
+      "name": "Human Anatomy and Physiology 1ACZZ101 Human Anatomy and Physiology 1A",
+      "allowed": [
+        "Semester 1"
+      ],
+      "prereqs": [],
+      "antireqs": [
+        "CXA172",
+        "CHG105"
+      ]
+    },
+    {
+      "code": "CZZ102",
+      "name": "Human Anatomy and Physiology 1ACZZ101 Human Anatomy and Physiology 1B",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": [
+        "CXA173",
+        "CHG105"
+      ]
+    },
+    {
+      "code": "CBA260",
+      "name": "Biochemistry: Metabolism & Nutrition",
+      "allowed": [
+        "Semester 1"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": [
+        "CXA261"
+      ]
+    },
+    {
+      "code": "CXA261",
+      "name": "Metabolic Biochemistry",
+      "allowed": [
+        "Semester 1"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": [
+        "CBA260"
+      ]
+    },
+    {
+      "code": "CHP207",
+      "name": "Human Physiology",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": [
+        "CXA237"
+      ]
+    },
+    {
+      "code": "CXA237",
+      "name": "Exercise Physiology",
+      "allowed": [
+        "Semester 2"
+      ],
+      "prereqs": [
+        "CZZ101",
+        "CZZ102"
+      ],
+      "antireqs": [
+        "CHP207"
+      ]
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    }
+  ],
+  "pathways": [],
+  "specialisations": [
+    {
+      "id": "critical_care",
+      "type": "Major",
+      "name": "Medical Research",
+      "units": [
+        {
+          "code": "CXA300",
+          "name": "Human Molecular Biology",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CBA265"
+          ],
+          "antireqs": [
+            "CBA343",
+            "CEA301",
+            "CHP312"
+          ]
+        },
+        {
+          "code": "CBA343",
+          "name": "Advanced Biochemistry and Molecular Biology",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CBA260",
+            "CBA265"
+          ],
+          "antireqs": [
+            "CXA300",
+            "CEA301",
+            "CHP312"
+          ]
+        },
+        {
+          "code": "CEA301",
+          "name": "Human Genetics",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CBA265",
+            "CZZ101"
+          ],
+          "antireqs": [
+            "CXA300",
+            "CBA343",
+            "CHP312"
+          ]
+        },
+        {
+          "code": "CHP312",
+          "name": "Neuroscience",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CHP207"
+          ],
+          "antireqs": [
+            "CXA300",
+            "CBA343",
+            "CEA301"
+          ]
+        },
+        {
+          "code": "CXA103",
+          "name": "Health: Determinants and Analysis",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "CZZ103",
+          "name": "Research Literacy",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "CAM203",
+          "name": "Contemporary Issues in Medical Research",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CZZ103"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CAM204",
+          "name": "Experimental Design and Analysis in Medical Research",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CZZ103",
+            "CHP207"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CAM312",
+          "name": "Biomolecular Approaches to Medical Research",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CBA265"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CAM313",
+          "name": "Systems-based Approaches to Medical Research",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CBA265"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CAM316",
+          "name": "Projects in Medical Research B",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CAM203",
+            "CAM204"
+          ],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1789087626369",
+      "type": "Major",
+      "name": "Medical Sciences",
+      "units": [
+        {
+          "code": "CXA103",
+          "name": "Health: Determinants and Analysis",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "CZZ103",
+          "name": "Research Literacy",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "CAM209",
+          "name": "Chronic Disease",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CZZ101"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CSA230",
+          "name": "Pharmacology",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CZZ101"
+          ],
+          "antireqs": []
+        },
+        {
+          "code": "CBA343",
+          "name": "Advanced Biochemistry and Molecular Biology",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CBA260",
+            "CBA265"
+          ],
+          "antireqs": [
+            "CEA301",
+            "CXA300"
+          ]
+        },
+        {
+          "code": "CEA301",
+          "name": "Human Genetics",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CBA265",
+            "CZZ101"
+          ],
+          "antireqs": [
+            "CBA343",
+            "CXA300"
+          ]
+        },
+        {
+          "code": "CXA300",
+          "name": "Human Molecular Biology",
+          "allowed": [
+            "Semester 1"
+          ],
+          "prereqs": [
+            "CBA265"
+          ],
+          "antireqs": [
+            "CBA343",
+            "CEA301"
+          ]
+        },
+        {
+          "code": "CAM309",
+          "name": "Musculoskeletal Anatomy",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CZZ101",
+            "CZZ102",
+            "CHP207"
+          ],
+          "antireqs": [
+            "CHP312",
+            "CXA320",
+            "CXA342"
+          ]
+        },
+        {
+          "code": "CHP312",
+          "name": "Neuroscience",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CHP207"
+          ],
+          "antireqs": [
+            "CAM309",
+            "CXA320",
+            "CXA342"
+          ]
+        },
+        {
+          "code": "CXA320",
+          "name": "Anatomical Pathology",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CZZ101",
+            "CZZ102"
+          ],
+          "antireqs": [
+            "CAM309",
+            "CHP312",
+            "CXA342"
+          ]
+        },
+        {
+          "code": "CXA342",
+          "name": "Medical Microbiology A",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": [
+            "CAM309",
+            "CHP312",
+            "CXA320"
+          ]
+        },
+        {
+          "code": "CAM314",
+          "name": "Advocacy and Engagement Project in Medical Sciences",
+          "allowed": [
+            "Semester 2"
+          ],
+          "prereqs": [
+            "CAM209"
+          ],
+          "antireqs": []
+        }
+      ]
+    }
+  ]
+}
