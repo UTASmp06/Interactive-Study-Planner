@@ -1,0 +1,516 @@
+{
+  "config": {
+    "title": "Bachelor of Information and Communication Technology (P3T)",
+    "terms": [
+      "Semester 1",
+      "Semester 2"
+    ],
+    "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "units": [
+    {
+      "code": "KIT101",
+      "name": "Programming Fundamentals",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT105",
+      "name": "ICT Professional Practices",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT111",
+      "name": "Data Networks and Security",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT119",
+      "name": "Database Fundamentals",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT202",
+      "name": "Web Programming Fundamentals",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT203",
+      "name": "ICT Project Management and Modelling",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT213",
+      "name": "Operating Systems",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "KIT219",
+      "name": "Development Methodologies and User Experience",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    }
+  ],
+  "pathways": [],
+  "specialisations": [
+    {
+      "id": "spec_1790312094859",
+      "type": "Major",
+      "name": "Application and Web Development",
+      "units": [
+        {
+          "code": "KIT107",
+          "name": "Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT108",
+          "name": "Artificial Intelligence",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT205",
+          "name": "Data Structures and Algorithms",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT214",
+          "name": "Intelligent and Secure Web Development",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT300",
+          "name": "ICT Project",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT305",
+          "name": "Mobile Application Development",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT328",
+          "name": "Advanced Web Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790312170158",
+      "type": "Major",
+      "name": "Artificial Intelligence",
+      "units": [
+        {
+          "code": "KIT107",
+          "name": "Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT108",
+          "name": "Artificial Intelligence",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT205",
+          "name": "Data Structures and Algorithms",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT315",
+          "name": "Machine Learning and Applications",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT300",
+          "name": "ICT Project",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT315",
+          "name": "Machine Learning and Applications",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT318",
+          "name": "Big Data and Cloud Computing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790312212447",
+      "type": "Major",
+      "name": "Games and Creative Technology",
+      "units": [
+        {
+          "code": "KIT107",
+          "name": "Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT109",
+          "name": "Games Fundamentals",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT207",
+          "name": "Game Design and Production",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT208",
+          "name": "Virtual and Mixed Reality Technology",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT300",
+          "name": "ICT Project",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT307",
+          "name": "Computer Graphics and Animation: Principles and Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT327",
+          "name": "Gamification and Serious Games",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790312258593",
+      "type": "Major",
+      "name": "Internet of Things",
+      "units": [
+        {
+          "code": "KIT107",
+          "name": "Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT141",
+          "name": "Internet of Things (IoT) Fundamentals",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT142",
+          "name": "ICT Project Sprint 1",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT241",
+          "name": "Embedded Systems Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT242",
+          "name": "Drones, Sensors, and Data",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT243",
+          "name": "Robots and Control Systems",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT244",
+          "name": "ICT Project Sprint 2",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT300",
+          "name": "ICT Project",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT341",
+          "name": "Advanced IoT Systems",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT342",
+          "name": "ICT Industry Placement",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790312296202",
+      "type": "Major",
+      "name": "Networks and Cybersecurity",
+      "units": [
+        {
+          "code": "KIT107",
+          "name": "Programming",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT118",
+          "name": "Introduction to Cybersecurity Policies and Practices",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT215",
+          "name": "CyberSecurity and Ethical Hacking",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT216",
+          "name": "Network Administration and Security",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT300",
+          "name": "ICT Project",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT304",
+          "name": "Server Administration and Security Assurance",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "KIT325",
+          "name": "Advanced Cybersecurity and eForensics",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    }
+  ]
+}
