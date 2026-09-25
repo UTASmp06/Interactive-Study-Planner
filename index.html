@@ -597,7 +597,7 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
    <div class="filter-panel">
     <span class="filter-title">Load Preset Course:</span>
     <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
-        <option value="">-- Loading Course List... --</option>
+        <option value="">-- LOADING PLEASE WAIT... --</option>
     </select>
     
     <!-- Spinner & status indicator container -->
@@ -1189,15 +1189,23 @@ function validatePlan() {
         let missingPrereq = false;
         let activeAntireq = false;
 
-        // Pre-requisite Check (Must be completed in a prior study period)
-        rules.prereqs.forEach(pre => {
-            const completedPrior = scheduledUnits.some(u => u.code === pre && u.order < unit.order);
-            if (!completedPrior) missingPrereq = true;
+        // Pre-requisite Check (Supports AND via array items / comma-separated, and OR via pipe '|')
+        rules.prereqs.forEach(preGroup => {
+            if (!preGroup) return;
+            const orOptions = preGroup.split('|').map(s => s.trim()).filter(Boolean);
+            const satisfied = orOptions.some(preCode =>
+                scheduledUnits.some(u => u.code === preCode && u.order < unit.order)
+            );
+            if (!satisfied) missingPrereq = true;
         });
 
-        // Anti-requisite Check (Global: Cannot be scheduled anywhere on the plan)
-        rules.antireqs.forEach(anti => {
-            const existsAnywhere = scheduledUnits.some(u => u.code === anti && u.cardElement !== unit.cardElement);
+        // Anti-requisite Check (Supports AND via array items / comma-separated, and OR via pipe '|')
+        rules.antireqs.forEach(antiGroup => {
+            if (!antiGroup) return;
+            const orOptions = antiGroup.split('|').map(s => s.trim()).filter(Boolean);
+            const existsAnywhere = orOptions.some(antiCode =>
+                scheduledUnits.some(u => u.code === antiCode && u.cardElement !== unit.cardElement)
+            );
             if (existsAnywhere) activeAntireq = true;
         });
 
@@ -1249,42 +1257,6 @@ function applyPathwayTemplate(pathwayId) {
     }
 
     validatePlan();
-}
-
-// PRESET COURSE LOADER (GITHUB PAGES COMPATIBLE)
-async function loadPresetCourse(fileName) {
-    if (!fileName) return;
-
-    try {
-        const response = await fetch(`./templates/${fileName}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch preset (${response.status} ${response.statusText})`);
-        }
-        
-        const importedData = await response.json();
-        if (importedData.config && importedData.units) {
-            CONFIG = importedData.config;
-            UNITS_DATA = importedData.units;
-            PATHWAY_TEMPLATES = importedData.pathways || [];
-            SPECIALISATIONS = importedData.specialisations || [];
-
-            activeSpecialisationId = "";
-            activePathway = null;
-
-            const dropdown = document.getElementById("preset-course-dropdown");
-            if (dropdown) dropdown.value = fileName;
-
-            initApp();
-            if (document.getElementById("options-modal").style.display === "flex") {
-                openOptionsModal();
-            }
-        } else {
-            alert("Invalid preset JSON file format.");
-        }
-    } catch (err) {
-        console.error("Preset load error:", err);
-        alert("Could not load selected preset file. Make sure the file exists in your repository's /templates folder.");
-    }
 }
 
 // MODAL CONTROLS & TAB SYSTEM
@@ -1357,8 +1329,8 @@ function addNewUnitRowWithData(code, name) {
         <td><input type="text" class="cfg-code" value="${code}"></td>
         <td><input type="text" class="cfg-name" value="${name}"></td>
         <td>${termsCheckboxes}</td>
-        <td><input type="text" class="cfg-pre" placeholder="Comma separated"></td>
-        <td><input type="text" class="cfg-anti" placeholder="Comma separated"></td>
+        <td><input type="text" class="cfg-pre" placeholder="Comma for AND, | for OR (e.g. ABC101, XYZ102|XYZ103)"></td>
+        <td><input type="text" class="cfg-anti" placeholder="Comma for AND, | for OR"></td>
         <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
     `;
     tbody.appendChild(row);
@@ -1650,8 +1622,8 @@ function addUnitToSpecTableWithData(tbody, code, name) {
         <td><input type="text" class="spec-code" value="${code}" placeholder="CODE"></td>
         <td><input type="text" class="spec-name" value="${name}" placeholder="Unit Name"></td>
         <td>${termsCheckboxes}</td>
-        <td><input type="text" class="spec-pre" placeholder="Comma separated"></td>
-        <td><input type="text" class="spec-anti" placeholder="Comma separated"></td>
+        <td><input type="text" class="spec-pre" placeholder="Comma for AND, | for OR"></td>
+        <td><input type="text" class="spec-anti" placeholder="Comma for AND, | for OR"></td>
         <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
     `;
     tbody.appendChild(row);
@@ -1673,16 +1645,14 @@ function exportConfigJSON() {
         specialisations: SPECIALISATIONS
     };
 
-    // Extract course code from title if present (e.g. "Bachelor of Nursing (H3O)" -> code: "h3o", cleanTitle: "bachelor_of_nursing")
     let rawTitle = CONFIG.title || "custom_course";
     let courseCode = "";
 
     const codeMatch = rawTitle.match(/\(([^)]+)\)/);
     if (codeMatch) {
         courseCode = codeMatch[1].trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-        rawTitle = rawTitle.replace(/\([^)]+\)/g, ''); // Remove (H3O) from base title
+        rawTitle = rawTitle.replace(/\([^)]+\)/g, '');
     } else {
-        // Fallback: check if active preset dropdown value contains a course code suffix
         const dropdown = document.getElementById("preset-course-dropdown");
         if (dropdown && dropdown.value) {
             const presetCodeMatch = dropdown.value.match(/_([a-z0-9]+)\.json$/i);
@@ -1692,14 +1662,12 @@ function exportConfigJSON() {
         }
     }
 
-    // Convert title to clean snake_case and collapse multiple consecutive underscores
     let cleanTitle = rawTitle
         .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '_') // Replace non-alphanumeric chars with underscore
-        .replace(/^_+|_+$/g, '')    // Trim leading/trailing underscores
-        .replace(/_+/g, '_');        // Collapse multiple consecutive underscores to a single one
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '')
+        .replace(/_+/g, '_');
 
-    // Construct final filename: title_code.json
     let fileName = cleanTitle;
     if (courseCode && !cleanTitle.endsWith(courseCode)) {
         fileName += `_${courseCode}`;
