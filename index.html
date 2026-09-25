@@ -1672,11 +1672,45 @@ function exportConfigJSON() {
         pathways: PATHWAY_TEMPLATES,
         specialisations: SPECIALISATIONS
     };
+
+    // Extract course code from title if present (e.g. "Bachelor of Nursing (H3O)" -> code: "h3o", cleanTitle: "bachelor_of_nursing")
+    let rawTitle = CONFIG.title || "custom_course";
+    let courseCode = "";
+
+    const codeMatch = rawTitle.match(/\(([^)]+)\)/);
+    if (codeMatch) {
+        courseCode = codeMatch[1].trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+        rawTitle = rawTitle.replace(/\([^)]+\)/g, ''); // Remove (H3O) from base title
+    } else {
+        // Fallback: check if active preset dropdown value contains a course code suffix
+        const dropdown = document.getElementById("preset-course-dropdown");
+        if (dropdown && dropdown.value) {
+            const presetCodeMatch = dropdown.value.match(/_([a-z0-9]+)\.json$/i);
+            if (presetCodeMatch) {
+                courseCode = presetCodeMatch[1].toLowerCase();
+            }
+        }
+    }
+
+    // Convert title to clean snake_case and collapse multiple consecutive underscores
+    let cleanTitle = rawTitle
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_') // Replace non-alphanumeric chars with underscore
+        .replace(/^_+|_+$/g, '')    // Trim leading/trailing underscores
+        .replace(/_+/g, '_');        // Collapse multiple consecutive underscores to a single one
+
+    // Construct final filename: title_code.json
+    let fileName = cleanTitle;
+    if (courseCode && !cleanTitle.endsWith(courseCode)) {
+        fileName += `_${courseCode}`;
+    }
+    fileName = `${fileName.replace(/_+/g, '_')}.json`;
+
     const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${CONFIG.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_template.json`;
+    a.download = fileName;
     a.click();
     URL.revokeObjectURL(url);
 }
