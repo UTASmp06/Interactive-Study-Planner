@@ -1,0 +1,892 @@
+{
+  "config": {
+    "title": "Bachelor of Business (B3A)",
+    "terms": [
+      "Semester 1",
+      "Semester 2"
+    ],
+    "years": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ]
+  },
+  "units": [
+    {
+      "code": "BAA111",
+      "name": "People and Organisations",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BEA111",
+      "name": "Introduction to Markets and the Economy",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BEA140",
+      "name": "Data Analysis for Business",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BFA103",
+      "name": "Accountability and Accounting",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BAA211",
+      "name": "Entrepreneurship",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BAA215",
+      "name": "Business and Corporate Law",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BMA202",
+      "name": "Business Strategy",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "BMA250",
+      "name": "Managerial Social Responsibility",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    }
+  ],
+  "pathways": [],
+  "specialisations": [
+    {
+      "id": "spec_1790316335494",
+      "type": "Major",
+      "name": "Accounting",
+      "units": [
+        {
+          "code": "BFA107",
+          "name": "Financial Accountability and Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA109",
+          "name": "Applied Accounting Systems",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA213",
+          "name": "Data Analytics for Accounting",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA203",
+          "name": "Financial Accounting and Reporting",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA303",
+          "name": "Auditing and Assurance Services",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA312",
+          "name": "Management Accountability and Accounting",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA391",
+          "name": "Applied Taxation",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA392",
+          "name": "Accounting Futures",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316393248",
+      "type": "Major",
+      "name": "Business Analytics",
+      "units": [
+        {
+          "code": "KIT101",
+          "name": "Programming Fundamentals",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": [
+            "ZAT113"
+          ]
+        },
+        {
+          "code": "ZAT113",
+          "name": "Programming Principles",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": [
+            "KIT101"
+          ]
+        },
+        {
+          "code": "KIT119",
+          "name": "Database Fundamentals",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": [
+            "ZAT119"
+          ]
+        },
+        {
+          "code": "ZAT119",
+          "name": "Data Analytics for Cyber Security",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": [
+            "KIT119"
+          ]
+        },
+        {
+          "code": "BEA212",
+          "name": "Fundamentals of Business Analytics",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA213",
+          "name": "Data Analytics for Accounting",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA318",
+          "name": "Business Analytics for Strategic Decision-Making",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA319",
+          "name": "Artificial Intelligence for Business",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA342",
+          "name": "Forecasting for Economic Decision-Making",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA315",
+          "name": "Information Systems for Business",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316422977",
+      "type": "Major",
+      "name": "Business Economics",
+      "units": [
+        {
+          "code": "BEA106",
+          "name": "Introduction to Behavioural Economics",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA121",
+          "name": "Economic Policy in Action",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA205",
+          "name": "Economics of Business Strategy",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA206",
+          "name": "Evaluating Alternatives",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA310",
+          "name": "Agriculture and Food Economics",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA313",
+          "name": "Energy Economics and Policy",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA317",
+          "name": "Regional Development in a Global Context",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA320",
+          "name": "Intermediate Macroeconomics",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316536325",
+      "type": "Major",
+      "name": "Finance",
+      "units": [
+        {
+          "code": "BEA112",
+          "name": "Fundamentals of Financial Markets and Institutions",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA107",
+          "name": "Financial Accountability and Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA286",
+          "name": "Investment Analysis",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BFA204",
+          "name": "Financial Planning",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA309",
+          "name": "International Finance",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA321",
+          "name": "Banking and Financial Institutions",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA343",
+          "name": "Corporate Finance",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BEA380",
+          "name": "Derivative Securities",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316536725",
+      "type": "Major",
+      "name": "Hospitality Management",
+      "units": [
+        {
+          "code": "BMA328",
+          "name": "Leadership in Organisations",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA357",
+          "name": "Freelancing and Small Business",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA314",
+          "name": "Organisational Change and Development",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA329",
+          "name": "Retail Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA343",
+          "name": "Digital and Social Media Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA351",
+          "name": "Marketing Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316537085",
+      "type": "Major",
+      "name": "Managing People and Organisations",
+      "units": [
+        {
+          "code": "BMA101",
+          "name": "Introduction to Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA121",
+          "name": "Foundations of Human Resource Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA206",
+          "name": "Management Communications",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA220",
+          "name": "Human Resource Management in Action",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA314",
+          "name": "Organisational Change and Development",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA328",
+          "name": "Leadership in Organisations",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA341",
+          "name": "Employment Relations",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA357",
+          "name": "Freelancing and Small Business",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316537429",
+      "type": "Major",
+      "name": "Marketing",
+      "units": [
+        {
+          "code": "BMA101",
+          "name": "Introduction to Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA151",
+          "name": "Principles of Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA258",
+          "name": "Services Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA262",
+          "name": "Consumer Behaviour",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA329",
+          "name": "Retail Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA331",
+          "name": "Marketing Research",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA343",
+          "name": "Digital and Social Media Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA351",
+          "name": "Marketing Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316537805",
+      "type": "Major",
+      "name": "Media and Communication",
+      "units": [
+        {
+          "code": "HEJ114",
+          "name": "Media Landscapes",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "HEJ116",
+          "name": "Digital Cultures",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "HOS113",
+          "name": "Introducing Indigenous Lifeworlds",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "FXA202",
+          "name": "The Photo Essay: Storytelling with image and text",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "HEJ244",
+          "name": "Crisis Communication",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "HEJ246",
+          "name": "Storytelling for Screen and Sound",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "HEJ331",
+          "name": "Media Futures",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "MNCXX1",
+          "name": "Core Option 1",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "MNCXX2",
+          "name": "Core Option 2",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "MNCXX3",
+          "name": "Core Option 3",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    },
+    {
+      "id": "spec_1790316538213",
+      "type": "Major",
+      "name": "Tourism Management",
+      "units": [
+        {
+          "code": "BMA328",
+          "name": "Leadership in Organisations",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA357",
+          "name": "Freelancing and Small Business",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA314",
+          "name": "Organisational Change and Development",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA329",
+          "name": "Retail Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA343",
+          "name": "Digital and Social Media Marketing",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        },
+        {
+          "code": "BMA351",
+          "name": "Marketing Management",
+          "allowed": [
+            "Semester 1",
+            "Semester 2"
+          ],
+          "prereqs": [],
+          "antireqs": []
+        }
+      ]
+    }
+  ]
+}
