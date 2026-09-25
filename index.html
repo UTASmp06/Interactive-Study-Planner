@@ -281,6 +281,34 @@ header{
     display: block; font-size: 10px; color: #6b46c1; font-weight: bold; margin-top: 4px;
 }
 
+/* Spinner Container and Dots Animation */
+.loading-spinner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.spinner-dots {
+    width: 20px;
+    height: 20px;
+    border: 3px dotted #3182ce;
+    border-radius: 50%;
+    animation: spin-dots 1.2s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@keyframes spin-dots {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #3182ce;
+}
+
 /* --- OPTIONS / MODAL STYLING --- */
 .modal-overlay {
     position: fixed;
@@ -566,12 +594,18 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
         </div>
     </div>
     
-    <div class="filter-panel">
-        <span class="filter-title">Load Preset Course:</span>
-        <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
-            <option value="">-- Checking directory... --</option>
-        </select>
+   <div class="filter-panel">
+    <span class="filter-title">Load Preset Course:</span>
+    <select class="select-dropdown" id="preset-course-dropdown" onchange="loadPresetCourse(this.value)">
+        <option value="">-- Checking directory... --</option>
+    </select>
+    
+    <!-- Spinner & status indicator container -->
+    <div id="preset-loading-indicator" class="loading-spinner" style="display: none;">
+        <div class="spinner-dots"></div>
+        <span class="loading-text-label" id="preset-loading-text">Loading... please wait</span>
     </div>
+</div>
 
     <div class="filter-panel">
         <span class="filter-title">Show Layout Terms:</span>
@@ -898,25 +932,78 @@ function renderPresetUI() {
         });
     }
 
+    // Hide loader if directory check finishes
+    document.getElementById("preset-loading-indicator").style.display = "none";
+
     // 2. Render Modal Library Grid
     const grid = document.getElementById("template-library-grid");
-    grid.innerHTML = "";
+    if (grid) {
+        grid.innerHTML = "";
 
-    if (VERIFIED_PRESETS.length === 0) {
-        grid.innerHTML = '<div style="font-size:13px; color:#e53e3e; font-weight:600;">No JSON template files detected in your /templates directory. Add template JSON files to populate this library.</div>';
-    } else {
-        VERIFIED_PRESETS.forEach(p => {
-            const card = document.createElement("div");
-            card.className = "template-card";
-            card.innerHTML = `
-                <div>
-                    <strong style="display:block; font-size:14px; color:#1e293b;">${p.name}</strong>
-                    <span style="font-size:11px; color:#64748b;">File: ${p.file}</span>
-                </div>
-                <button class="action-btn add-btn" onclick="loadPresetCourse('${p.file}')">Load This Template</button>
-            `;
-            grid.appendChild(card);
-        });
+        if (VERIFIED_PRESETS.length === 0) {
+            grid.innerHTML = '<div style="font-size:13px; color:#e53e3e; font-weight:600;">No JSON template files detected in your /templates directory. Add template JSON files to populate this library.</div>';
+        } else {
+            VERIFIED_PRESETS.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "template-card";
+                card.innerHTML = `
+                    <div>
+                        <strong style="display:block; font-size:14px; color:#1e293b;">${p.name}</strong>
+                        <span style="font-size:11px; color:#64748b;">File: ${p.file}</span>
+                    </div>
+                    <button class="action-btn add-btn" onclick="loadPresetCourse('${p.file}')">Load This Template</button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+    }
+}
+
+// PRESET COURSE LOADER WITH SPINNER & WAIT STATUS
+async function loadPresetCourse(fileName) {
+    if (!fileName) return;
+
+    const dropdown = document.getElementById("preset-course-dropdown");
+    const loader = document.getElementById("preset-loading-indicator");
+    const loaderText = document.getElementById("preset-loading-text");
+
+    // Enable spinner UI state & lock dropdown during load
+    if (loader) loader.style.display = "inline-flex";
+    if (loaderText) loaderText.innerText = "Loading... please wait";
+    if (dropdown) dropdown.disabled = true;
+
+    try {
+        const response = await fetch(`./templates/${fileName}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch preset (${response.status} ${response.statusText})`);
+        }
+        
+        const importedData = await response.json();
+        if (importedData.config && importedData.units) {
+            CONFIG = importedData.config;
+            UNITS_DATA = importedData.units;
+            PATHWAY_TEMPLATES = importedData.pathways || [];
+            SPECIALISATIONS = importedData.specialisations || [];
+
+            activeSpecialisationId = "";
+            activePathway = null;
+
+            if (dropdown) dropdown.value = fileName;
+
+            initApp();
+            if (document.getElementById("options-modal").style.display === "flex") {
+                openOptionsModal();
+            }
+        } else {
+            alert("Invalid preset JSON file format.");
+        }
+    } catch (err) {
+        console.error("Preset load error:", err);
+        alert("Could not load selected preset file. Make sure the file exists in your repository's /templates folder.");
+    } finally {
+        // Re-enable dropdown & hide spinner indicator when finished
+        if (loader) loader.style.display = "none";
+        if (dropdown) dropdown.disabled = false;
     }
 }
 
