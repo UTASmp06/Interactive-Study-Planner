@@ -20,158 +20,286 @@
     {
       "code": "NUR131",
       "name": "Concepts of Nursing 1: Introduction to the Profession",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "NUR132",
       "name": "Foundations of Nursing 1",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "NUR137",
       "name": "Mental Health",
-      "allowed": ["Sem 2"],
+      "allowed": [
+        "Sem 2"
+      ],
       "prereqs": [],
-      "antireqs": ["NUR359"]
+      "antireqs": [
+        "NUR359"
+      ]
     },
     {
       "code": "NUR138",
       "name": "Foundations of Nursing 2",
-      "allowed": ["Sem 2"],
-      "prereqs": ["NUR132"],
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "NUR132"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR134",
       "name": "Primary Health Care",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "CXA137",
       "name": "Anatomy and Physiology for Nurses",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "HGA246",
       "name": "Aboriginal and Torres Strait Islander Health and Well Being",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "NUR135",
       "name": "Nursing Practice 1",
-      "allowed": ["Sem 2"],
-      "prereqs": ["NUR132"],
-      "antireqs": ["NUR356", "NUR355", "NUR244"]
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "NUR132"
+      ],
+      "antireqs": [
+        "NUR356",
+        "NUR355",
+        "NUR244"
+      ]
     },
     {
       "code": "CXA144",
       "name": "Pathophysiology for Nurses",
-      "allowed": ["Sem 2"],
-      "prereqs": ["CXA137"],
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "CXA137"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR247",
       "name": "Nursing Communication and Technology Enhanced Care",
-      "allowed": ["Sem 2", "Spring"],
+      "allowed": [
+        "Sem 2",
+        "Spring"
+      ],
       "prereqs": [],
       "antireqs": []
     },
     {
       "code": "CSA212",
       "name": "Safety and Quality in Medication Management",
-      "allowed": ["Sem 1"],
-      "prereqs": ["NUR135"],
+      "allowed": [
+        "Sem 1"
+      ],
+      "prereqs": [
+        "NUR135"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR239",
       "name": "Nursing Practice 2",
-      "allowed": ["Sem 1"],
-      "prereqs": ["NUR135", "CXA144"],
+      "allowed": [
+        "Sem 1"
+      ],
+      "prereqs": [
+        "NUR135",
+        "CXA144"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR245",
       "name": "Older Persons and Ageing",
-      "allowed": ["Sem 1"],
+      "allowed": [
+        "Sem 1"
+      ],
       "prereqs": [],
-      "antireqs": ["NUR358"]
+      "antireqs": [
+        "NUR358"
+      ]
     },
     {
       "code": "NUR242",
       "name": "Nursing Practice 3",
-      "allowed": ["Sem 1", "Sem 2", "Spring"],
-      "prereqs": ["NUR239", "CXA144"],
-      "antireqs": ["NUR356", "NUR355", "CNA353"]
+      "allowed": [
+        "Sem 1",
+        "Sem 2",
+        "Spring"
+      ],
+      "prereqs": [
+        "NUR239",
+        "CXA144"
+      ],
+      "antireqs": [
+        "NUR356",
+        "NUR355",
+        "CNA353"
+      ]
     },
     {
       "code": "NUR244",
       "name": "Concepts of Nursing 2: Research and Professional Responsibilities",
-      "allowed": ["Sem 2", "Summer"],
-      "prereqs": ["NUR131"],
-      "antireqs": ["NUR135", "NUR359"]
+      "allowed": [
+        "Sem 2",
+        "Summer"
+      ],
+      "prereqs": [
+        "NUR131"
+      ],
+      "antireqs": [
+        "NUR135",
+        "NUR359"
+      ]
     },
     {
       "code": "NUR248",
       "name": "Chronic Care Nursing",
-      "allowed": ["Sem 2"],
-      "prereqs": ["NUR134"],
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "NUR134"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR350",
       "name": "Concepts of Nursing 3: Transition to Practice",
-      "allowed": ["Sem 1"],
-      "prereqs": ["NUR239", "NUR131"],
+      "allowed": [
+        "Sem 1"
+      ],
+      "prereqs": [
+        "NUR239",
+        "NUR131"
+      ],
       "antireqs": []
     },
     {
       "code": "NUR353",
       "name": "Complex Care",
-      "allowed": ["Sem 1", "Sem 2"],
-      "prereqs": ["CXA144"],
-      "antireqs": ["CNA242", "CNA239", "NUR135"]
+      "allowed": [
+        "Sem 1",
+        "Sem 2"
+      ],
+      "prereqs": [
+        "CXA144"
+      ],
+      "antireqs": [
+        "CNA242",
+        "CNA239",
+        "NUR135"
+      ]
     },
     {
       "code": "NUR358",
       "name": "Nursing Practice 4 (25%)",
-      "allowed": ["Sem 1", "Winter"],
-      "prereqs": ["NUR242", "CSA212"],
-      "antireqs": ["NUR245"]
+      "allowed": [
+        "Sem 1",
+        "Winter"
+      ],
+      "prereqs": [
+        "NUR242",
+        "CSA212"
+      ],
+      "antireqs": [
+        "NUR245"
+      ]
     },
     {
       "code": "NUR359",
       "name": "Nursing Practice 5 (25%)",
-      "allowed": ["Sem 2", "Spring"],
-      "prereqs": ["NUR358"],
-      "antireqs": ["NUR137", "NUR244"]
+      "allowed": [
+        "Sem 2",
+        "Spring"
+      ],
+      "prereqs": [
+        "NUR358"
+      ],
+      "antireqs": [
+        "NUR137",
+        "NUR244"
+      ]
     },
     {
       "code": "NUR355",
       "name": "Children and Young People",
-      "allowed": ["Sem 2"],
-      "prereqs": ["CXA144"],
-      "antireqs": ["NUR135", "NUR242"]
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "CXA144"
+      ],
+      "antireqs": [
+        "NUR135",
+        "NUR242"
+      ]
     },
     {
       "code": "NUR356",
       "name": "Concepts of Nursing 4: The Emerging Leader",
-      "allowed": ["Sem 2"],
-      "prereqs": ["NUR244"],
-      "antireqs": ["NUR135", "NUR242"]
+      "allowed": [
+        "Sem 2"
+      ],
+      "prereqs": [
+        "NUR244"
+      ],
+      "antireqs": [
+        "NUR135",
+        "NUR242"
+      ]
     }
   ],
-  "pathways": [],
+  "pathways": [
+    {
+      "id": "pathway_1790311475187",
+      "name": "Enrolled Nurse",
+      "units": [
+        "NUR132",
+        "NUR137",
+        "NUR138",
+        "NUR134",
+        "HGA246",
+        "NUR135",
+        "NUR239",
+        "NUR245"
+      ]
+    }
+  ],
   "specialisations": []
 }
