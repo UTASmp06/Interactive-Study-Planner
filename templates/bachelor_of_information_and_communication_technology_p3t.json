@@ -93,6 +93,86 @@
       ],
       "prereqs": [],
       "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 1",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 2",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 3",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 4",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 5",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 6",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 7",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
+    },
+    {
+      "code": "XXXYYY",
+      "name": "Student Elective 8",
+      "allowed": [
+        "Semester 1",
+        "Semester 2"
+      ],
+      "prereqs": [],
+      "antireqs": []
     }
   ],
   "pathways": [],
