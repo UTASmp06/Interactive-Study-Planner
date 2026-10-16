@@ -18,21 +18,23 @@
       "code": "LAW102",
       "name": "International Law",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW106",
       "name": "Torts",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW107|LAW108"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW107",
@@ -42,47 +44,50 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW108",
       "name": "Legal Reasoning and Technological Change",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW218",
       "name": "Criminal Law: Homicide and Other Complex Offences",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW229",
       "name": "Criminal Law: Principles and Processes",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW250",
       "name": "Constitutional Law",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW253"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW251",
@@ -92,97 +97,112 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW253",
       "name": "Foundations of Public Law",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW107"
+      ],
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW262",
       "name": "Private Law Obligations and Remedies",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW106",
+        "LAW251"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW301",
       "name": "Administrative Law and Applied Statutory Interpretation",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW253"
+      ],
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW305",
       "name": "Corporations Law 1",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW353",
       "name": "Equity and Trusts",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW251",
+        "LAW262"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW354",
       "name": "Property Law",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW251"
+      ],
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW355",
       "name": "Civil Procedure",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "LAW262"
+      ],
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW422",
       "name": "Evidence",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW452",
       "name": "Legal Ethics",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     },
     {
       "code": "LAW400",
@@ -192,7 +212,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW498",
@@ -202,7 +223,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAW499",
@@ -212,7 +234,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX1",
@@ -222,7 +245,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX2",
@@ -232,7 +256,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX3",
@@ -242,7 +267,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX4",
@@ -252,7 +278,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX5",
@@ -262,7 +289,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "LAWXX6",
@@ -272,7 +300,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "ABCXX1",
@@ -282,7 +311,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "ABCXX2",
@@ -292,7 +322,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "ABCXX3",
@@ -302,7 +333,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "ABCXX4",
@@ -312,7 +344,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     }
   ],
   "pathways": [],
