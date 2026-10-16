@@ -18,31 +18,31 @@
       "code": "BAA111",
       "name": "People and Organisations",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BEA111",
       "name": "Introduction to Markets and the Economy",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BEA140",
       "name": "Data Analysis for Business",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BFA103",
@@ -52,47 +52,48 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BAA211",
       "name": "Entrepreneurship",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BAA215",
       "name": "Business and Corporate Law",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BMA202",
       "name": "Business Strategy",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "BMA250",
       "name": "Managerial Social Responsibility",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": true
     }
   ],
   "pathways": [],
@@ -106,81 +107,87 @@
           "code": "BFA107",
           "name": "Financial Accountability and Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA109",
           "name": "Applied Accounting Systems",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA213",
           "name": "Data Analytics for Accounting",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA203",
           "name": "Financial Accounting and Reporting",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BFA109|BFA104"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA303",
           "name": "Auditing and Assurance Services",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BFA109|BFA201|BFA203"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA312",
           "name": "Management Accountability and Accounting",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA391",
           "name": "Applied Taxation",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA392",
           "name": "Accounting Futures",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BFA203"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -199,7 +206,8 @@
           "prereqs": [],
           "antireqs": [
             "ZAT113"
-          ]
+          ],
+          "cpRequired": false
         },
         {
           "code": "ZAT113",
@@ -211,91 +219,96 @@
           "prereqs": [],
           "antireqs": [
             "KIT101"
-          ]
+          ],
+          "cpRequired": false
         },
         {
           "code": "KIT119",
           "name": "Database Fundamentals",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
           "antireqs": [
             "ZAT119"
-          ]
+          ],
+          "cpRequired": false
         },
         {
           "code": "ZAT119",
           "name": "Data Analytics for Cyber Security",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
           "antireqs": [
             "KIT119"
-          ]
+          ],
+          "cpRequired": false
         },
         {
           "code": "BEA212",
           "name": "Fundamentals of Business Analytics",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA213",
           "name": "Data Analytics for Accounting",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA318",
           "name": "Business Analytics for Strategic Decision-Making",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BEA212"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA319",
           "name": "Artificial Intelligence for Business",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA342",
           "name": "Forecasting for Economic Decision-Making",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BEA140"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA315",
           "name": "Information Systems for Business",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -308,81 +321,81 @@
           "code": "BEA106",
           "name": "Introduction to Behavioural Economics",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA121",
           "name": "Economic Policy in Action",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA205",
           "name": "Economics of Business Strategy",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA206",
           "name": "Evaluating Alternatives",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA310",
           "name": "Agriculture and Food Economics",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA313",
           "name": "Energy Economics and Policy",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA317",
           "name": "Regional Development in a Global Context",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
-          ],
+          "allowed": [],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA320",
           "name": "Intermediate Macroeconomics",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BEA121"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -395,81 +408,85 @@
           "code": "BEA112",
           "name": "Fundamentals of Financial Markets and Institutions",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA107",
           "name": "Financial Accountability and Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA286",
           "name": "Investment Analysis",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BEA112"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BFA204",
           "name": "Financial Planning",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA309",
           "name": "International Finance",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA321",
           "name": "Banking and Financial Institutions",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA343",
           "name": "Corporate Finance",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BEA112"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BEA380",
           "name": "Derivative Securities",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -482,61 +499,63 @@
           "code": "BMA328",
           "name": "Leadership in Organisations",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "BMA357",
           "name": "Freelancing and Small Business",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA314",
           "name": "Organisational Change and Development",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BMA121|BMA101"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA329",
           "name": "Retail Marketing",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA343",
           "name": "Digital and Social Media Marketing",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA351",
           "name": "Marketing Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -549,81 +568,87 @@
           "code": "BMA101",
           "name": "Introduction to Management",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA121",
           "name": "Foundations of Human Resource Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA206",
           "name": "Management Communications",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA220",
           "name": "Human Resource Management in Action",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BMA121"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA314",
           "name": "Organisational Change and Development",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BMA121|BMA101"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA328",
           "name": "Leadership in Organisations",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "BMA341",
           "name": "Employment Relations",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BMA121|BMA101"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA357",
           "name": "Freelancing and Small Business",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -636,81 +661,81 @@
           "code": "BMA101",
           "name": "Introduction to Management",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA151",
           "name": "Principles of Marketing",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA258",
           "name": "Services Marketing",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA262",
           "name": "Consumer Behaviour",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA329",
           "name": "Retail Marketing",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA331",
           "name": "Marketing Research",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA343",
           "name": "Digital and Social Media Marketing",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA351",
           "name": "Marketing Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -723,71 +748,71 @@
           "code": "HEJ114",
           "name": "Media Landscapes",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "HEJ116",
           "name": "Digital Cultures",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "HOS113",
           "name": "Introducing Indigenous Lifeworlds",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "FXA202",
           "name": "The Photo Essay: Storytelling with image and text",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "HEJ244",
           "name": "Crisis Communication",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "HEJ246",
           "name": "Storytelling for Screen and Sound",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "HEJ331",
           "name": "Media Futures",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "MNCXX1",
@@ -797,7 +822,8 @@
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "MNCXX2",
@@ -807,7 +833,8 @@
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "MNCXX3",
@@ -817,7 +844,8 @@
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -830,61 +858,63 @@
           "code": "BMA328",
           "name": "Leadership in Organisations",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "BMA357",
           "name": "Freelancing and Small Business",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA314",
           "name": "Organisational Change and Development",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "BMA121|BMA101"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA329",
           "name": "Retail Marketing",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA343",
           "name": "Digital and Social Media Marketing",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "BMA351",
           "name": "Marketing Management",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     }
