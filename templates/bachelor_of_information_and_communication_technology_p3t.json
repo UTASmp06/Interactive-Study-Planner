@@ -3,7 +3,13 @@
     "title": "Bachelor of Information and Communication Technology (P3T)",
     "terms": [
       "Semester 1",
-      "Semester 2"
+      "Block 1",
+      "Block 2",
+      "Semester 2",
+      "Block 3",
+      "Block 4",
+      "Spring",
+      "Summer"
     ],
     "years": [
       2026,
@@ -22,77 +28,86 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT105",
       "name": "ICT Professional Practices",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT111",
       "name": "Data Networks and Security",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT119",
       "name": "Database Fundamentals",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT202",
       "name": "Web Programming Fundamentals",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 1"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "KIT119"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT203",
       "name": "ICT Project Management and Modelling",
       "allowed": [
         "Semester 1",
-        "Semester 2"
+        "Spring"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "KIT101|KIT107|KIT103"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT213",
       "name": "Operating Systems",
       "allowed": [
-        "Semester 1",
         "Semester 2"
       ],
-      "prereqs": [],
-      "antireqs": []
+      "prereqs": [
+        "KIT101|KIT103|KIT107"
+      ],
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "KIT219",
       "name": "Development Methodologies and User Experience",
       "allowed": [
-        "Semester 1",
-        "Semester 2"
+        "Semester 2",
+        "Summer"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -102,7 +117,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -112,7 +128,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -122,7 +139,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -132,7 +150,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -142,7 +161,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -152,7 +172,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -162,7 +183,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     },
     {
       "code": "XXXYYY",
@@ -172,7 +194,8 @@
         "Semester 2"
       ],
       "prereqs": [],
-      "antireqs": []
+      "antireqs": [],
+      "cpRequired": false
     }
   ],
   "pathways": [],
@@ -189,8 +212,11 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT103"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT108",
@@ -200,7 +226,8 @@
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT205",
@@ -209,18 +236,23 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT107"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT214",
           "name": "Intelligent and Secure Web Development",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT202"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT300",
@@ -229,28 +261,35 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT305",
           "name": "Mobile Application Development",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT205|KIT206|KIT207|KIT208"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT328",
           "name": "Advanced Web Programming",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT202"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -266,8 +305,11 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT103"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT108",
@@ -277,27 +319,30 @@
             "Semester 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT205",
           "name": "Data Structures and Algorithms",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT107"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT315",
           "name": "Machine Learning and Applications",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
+          "allowed": [],
+          "prereqs": [
+            "KIT205|KIT206"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT300",
@@ -306,28 +351,33 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT315",
           "name": "Machine Learning and Applications",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
+          "allowed": [],
+          "prereqs": [
+            "KIT205|KIT206"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT318",
           "name": "Big Data and Cloud Computing",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT107"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -343,38 +393,45 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT103"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT109",
           "name": "Games Fundamentals",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT207",
           "name": "Game Design and Production",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT107|KIT109"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT208",
           "name": "Virtual and Mixed Reality Technology",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT107|KIT109"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT300",
@@ -383,28 +440,33 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT307",
           "name": "Computer Graphics and Animation: Principles and Programming",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT205|KIT206|KIT207|KIT208"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT327",
           "name": "Gamification and Serious Games",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
+          "allowed": [],
+          "prereqs": [
+            "KIT207"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     },
@@ -420,68 +482,78 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT103"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT141",
           "name": "Internet of Things (IoT) Fundamentals",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Block 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT142",
           "name": "ICT Project Sprint 1",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Block 2"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT241",
           "name": "Embedded Systems Programming",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Block 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT141",
+            "KIT101"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT242",
           "name": "Drones, Sensors, and Data",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Block 3"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT141"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT243",
           "name": "Robots and Control Systems",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
+          "allowed": [],
+          "prereqs": [
+            "KIT141"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT244",
           "name": "ICT Project Sprint 2",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Block 4"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT142"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT300",
@@ -490,18 +562,22 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "KIT341",
           "name": "Advanced IoT Systems",
-          "allowed": [
-            "Semester 1",
-            "Semester 2"
+          "allowed": [],
+          "prereqs": [
+            "KIT241",
+            "KIT242"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT342",
@@ -510,8 +586,11 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": true
         }
       ]
     },
@@ -527,38 +606,45 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT101|KIT103"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT118",
           "name": "Introduction to Cybersecurity Policies and Practices",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
           "prereqs": [],
-          "antireqs": []
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT215",
           "name": "CyberSecurity and Ethical Hacking",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT111"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT216",
           "name": "Network Administration and Security",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT111"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT300",
@@ -567,28 +653,36 @@
             "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT203"
+          ],
+          "antireqs": [],
+          "cpRequired": true
         },
         {
           "code": "KIT304",
           "name": "Server Administration and Security Assurance",
           "allowed": [
-            "Semester 1",
-            "Semester 2"
+            "Semester 1"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT111",
+            "KIT213"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         },
         {
           "code": "KIT325",
           "name": "Advanced Cybersecurity and eForensics",
           "allowed": [
-            "Semester 1",
             "Semester 2"
           ],
-          "prereqs": [],
-          "antireqs": []
+          "prereqs": [
+            "KIT215"
+          ],
+          "antireqs": [],
+          "cpRequired": false
         }
       ]
     }
