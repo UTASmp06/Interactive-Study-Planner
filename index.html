@@ -281,6 +281,41 @@ header{
     display: block; font-size: 10px; color: #6b46c1; font-weight: bold; margin-top: 4px;
 }
 
+/* Credit Point Warning Styling */
+.card.has-cp-warning {
+    border: 2px solid #dd6b20 !important;
+    background-color: #fffaf0 !important;
+}
+
+.cp-warning-badge {
+    margin-top: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #c05621;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #feebc8;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #fbd38d;
+}
+
+.cp-warning-badge button {
+    background: transparent;
+    border: none;
+    color: #7b341e;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: pointer;
+    padding: 0 2px;
+    margin-left: 6px;
+}
+
+.cp-warning-badge button:hover {
+    color: #c53030;
+}
+
 /* Spinner Container and Dots Animation */
 .loading-spinner {
     display: inline-flex;
@@ -704,6 +739,7 @@ body.clean-table-mode .card strong { display: inline-block; min-width: 75px; col
                                 <th>Allowed Terms</th>
                                 <th>Pre-requisites</th>
                                 <th>Anti-requisites</th>
+                                <th style="width: 60px; text-align:center;">CP Req.</th>
                                 <th style="width: 50px;">Action</th>
                             </tr>
                         </thead>
@@ -896,6 +932,9 @@ let dragged = null;
 let activePathway = null;
 let activeSpecialisationId = "";
 
+// Global set to track cards where credit point warning has been acknowledged
+const dismissedCPWarnings = new Set();
+
 async function checkAvailablePresets() {
     VERIFIED_PRESETS = [];
     
@@ -1037,7 +1076,8 @@ function rebuildUnitRules() {
         UNIT_RULES[u.code] = {
             allowed: u.allowed,
             prereqs: u.prereqs,
-            antireqs: u.antireqs
+            antireqs: u.antireqs,
+            cpRequired: !!u.cpRequired
         };
     });
 }
@@ -1154,7 +1194,9 @@ function attachDragEvents() {
 
 function validatePlan() {
     document.querySelectorAll(".card").forEach(card => {
-        card.classList.remove("invalid-semester", "invalid-requisite");
+        card.classList.remove("invalid-semester", "invalid-requisite", "has-cp-warning");
+        const existingBadge = card.querySelector('.cp-warning-badge');
+        if (existingBadge) existingBadge.remove();
     });
 
     let scheduledUnits = [];
@@ -1212,7 +1254,26 @@ function validatePlan() {
         if (missingPrereq || activeAntireq) {
             unit.cardElement.classList.add("invalid-requisite");
         }
+
+        // Credit Point Requirement Flag (Triggers once until dismissed)
+        if (rules.cpRequired && !dismissedCPWarnings.has(unit.code)) {
+            unit.cardElement.classList.add("has-cp-warning");
+            
+            let badge = unit.cardElement.querySelector('.cp-warning-badge');
+            if (!badge) {
+                badge = document.createElement('div');
+                badge.className = 'cp-warning-badge';
+                badge.innerHTML = `⚠️ CP Req. Check <button onclick="dismissCPWarning(event, '${unit.code}')" title="Acknowledge & Dismiss Warning">✕</button>`;
+                unit.cardElement.appendChild(badge);
+            }
+        }
     });
+}
+
+function dismissCPWarning(event, code) {
+    event.stopPropagation();
+    dismissedCPWarnings.add(code);
+    validatePlan();
 }
 
 function updateSemesterVisibility() {
@@ -1318,12 +1379,14 @@ function bulkAddUnitsToSpec(btn) {
     inputArea.value = "";
 }
 
-function addNewUnitRowWithData(code, name) {
+function addNewUnitRowWithData(code, name, cpRequired = false) {
     const tbody = document.getElementById("unit-editor-tbody");
     const row = document.createElement("tr");
     let termsCheckboxes = CONFIG.terms.map(t => {
         return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="cfg-term-chk" data-term="${t}" checked> ${t}</label>`;
     }).join('');
+
+    const cpChecked = cpRequired ? 'checked' : '';
 
     row.innerHTML = `
         <td><input type="text" class="cfg-code" value="${code}"></td>
@@ -1331,6 +1394,7 @@ function addNewUnitRowWithData(code, name) {
         <td>${termsCheckboxes}</td>
         <td><input type="text" class="cfg-pre" placeholder="Comma for AND, | for OR (e.g. ABC101, XYZ102|XYZ103)"></td>
         <td><input type="text" class="cfg-anti" placeholder="Comma for AND, | for OR"></td>
+        <td style="text-align:center;"><input type="checkbox" class="cfg-cp-chk" ${cpChecked} title="Check if this unit has credit point requirements"></td>
         <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
     `;
     tbody.appendChild(row);
@@ -1370,8 +1434,9 @@ function syncModalDraftData() {
         });
         const prereqs = row.querySelector(".cfg-pre").value.split(",").map(s => s.trim()).filter(Boolean);
         const antireqs = row.querySelector(".cfg-anti").value.split(",").map(s => s.trim()).filter(Boolean);
+        const cpRequired = row.querySelector(".cfg-cp-chk") ? row.querySelector(".cfg-cp-chk").checked : false;
 
-        if (code) currentUnits.push({ code, name, allowed, prereqs, antireqs });
+        if (code) currentUnits.push({ code, name, allowed, prereqs, antireqs, cpRequired });
     });
     UNITS_DATA = currentUnits;
 
@@ -1408,8 +1473,9 @@ function syncModalDraftData() {
             });
             const prereqs = row.querySelector(".spec-pre").value.split(",").map(s => s.trim()).filter(Boolean);
             const antireqs = row.querySelector(".spec-anti").value.split(",").map(s => s.trim()).filter(Boolean);
+            const cpRequired = row.querySelector(".spec-cp-chk") ? row.querySelector(".spec-cp-chk").checked : false;
 
-            if (code) units.push({ code, name: uName, allowed, prereqs, antireqs });
+            if (code) units.push({ code, name: uName, allowed, prereqs, antireqs, cpRequired });
         });
 
         if (name) currentSpecs.push({ id, type, name, units });
@@ -1434,12 +1500,15 @@ function renderModalUnitTable() {
             return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="cfg-term-chk" data-term="${t}" ${checked}> ${t}</label>`;
         }).join('');
 
+        const cpChecked = unit.cpRequired ? 'checked' : '';
+
         row.innerHTML = `
             <td><input type="text" class="cfg-code" value="${unit.code}"></td>
             <td><input type="text" class="cfg-name" value="${unit.name}"></td>
             <td>${termsCheckboxes}</td>
             <td><input type="text" class="cfg-pre" value="${unit.prereqs.join(', ')}"></td>
             <td><input type="text" class="cfg-anti" value="${unit.antireqs.join(', ')}"></td>
+            <td style="text-align:center;"><input type="checkbox" class="cfg-cp-chk" ${cpChecked} title="Check if this unit has credit point requirements"></td>
             <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
         `;
         tbody.appendChild(row);
@@ -1447,7 +1516,7 @@ function renderModalUnitTable() {
 }
 
 function addNewUnitRow() {
-    addNewUnitRowWithData("", "");
+    addNewUnitRowWithData("", "", false);
 }
 
 function deleteModalUnitRow(btn) {
@@ -1518,6 +1587,8 @@ function renderModalSpecialisationEditor() {
                 return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="spec-term-chk" data-term="${t}" ${checked}> ${t}</label>`;
             }).join('');
 
+            const cpChecked = u.cpRequired ? 'checked' : '';
+
             return `
                 <tr>
                     <td><input type="text" class="spec-code" value="${u.code}"></td>
@@ -1525,6 +1596,7 @@ function renderModalSpecialisationEditor() {
                     <td>${termsCheckboxes}</td>
                     <td><input type="text" class="spec-pre" value="${u.prereqs ? u.prereqs.join(', ') : ''}"></td>
                     <td><input type="text" class="spec-anti" value="${u.antireqs ? u.antireqs.join(', ') : ''}"></td>
+                    <td style="text-align:center;"><input type="checkbox" class="spec-cp-chk" ${cpChecked} title="Check if this unit has credit point requirements"></td>
                     <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
                 </tr>
             `;
@@ -1556,6 +1628,7 @@ function renderModalSpecialisationEditor() {
                         <th>Allowed Terms</th>
                         <th>Pre-requisites</th>
                         <th>Anti-requisites</th>
+                        <th style="width: 60px; text-align:center;">CP Req.</th>
                         <th style="width: 50px;">Action</th>
                     </tr>
                 </thead>
@@ -1597,6 +1670,7 @@ function addNewSpecialisationBlock() {
                     <th>Allowed Terms</th>
                     <th>Pre-requisites</th>
                     <th>Anti-requisites</th>
+                    <th style="width: 60px; text-align:center;">CP Req.</th>
                     <th style="width: 50px;">Action</th>
                 </tr>
             </thead>
@@ -1608,15 +1682,17 @@ function addNewSpecialisationBlock() {
 
 function addUnitToSpecTable(btn) {
     const tbody = btn.closest(".pathway-card-editor").querySelector(".spec-unit-tbody");
-    addUnitToSpecTableWithData(tbody, "", "");
+    addUnitToSpecTableWithData(tbody, "", "", false);
 }
 
-function addUnitToSpecTableWithData(tbody, code, name) {
+function addUnitToSpecTableWithData(tbody, code, name, cpRequired = false) {
     const row = document.createElement("tr");
 
     let termsCheckboxes = CONFIG.terms.map(t => {
         return `<label style="margin-right:6px; font-size:11px;"><input type="checkbox" class="spec-term-chk" data-term="${t}" checked> ${t}</label>`;
     }).join('');
+
+    const cpChecked = cpRequired ? 'checked' : '';
 
     row.innerHTML = `
         <td><input type="text" class="spec-code" value="${code}" placeholder="CODE"></td>
@@ -1624,6 +1700,7 @@ function addUnitToSpecTableWithData(tbody, code, name) {
         <td>${termsCheckboxes}</td>
         <td><input type="text" class="spec-pre" placeholder="Comma for AND, | for OR"></td>
         <td><input type="text" class="spec-anti" placeholder="Comma for AND, | for OR"></td>
+        <td style="text-align:center;"><input type="checkbox" class="spec-cp-chk" ${cpChecked} title="Check if this unit has credit point requirements"></td>
         <td><button class="action-btn delete-btn" onclick="deleteModalUnitRow(this)">✕</button></td>
     `;
     tbody.appendChild(row);
