@@ -1203,10 +1203,10 @@ function validatePlan() {
         rules.antireqs.forEach(antiGroup => {
             if (!antiGroup) return;
             const orOptions = antiGroup.split('|').map(s => s.trim()).filter(Boolean);
-            const existsAnywhere = orOptions.some(antiCode =>
-                scheduledUnits.some(u => u.code === antiCode && u.cardElement !== unit.cardElement)
+            const existsInSameTerm = orOptions.some(antiCode =>
+                scheduledUnits.some(u => u.code === antiCode && u.cardElement !== unit.cardElement && u.order === unit.order)
             );
-            if (existsAnywhere) activeAntireq = true;
+            if (existsInSameTerm) activeAntireq = true;
         });
 
         if (missingPrereq || activeAntireq) {
